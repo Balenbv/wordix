@@ -5,6 +5,9 @@ Juego Wordix desarrollado en Introduccion a la programacion (FAI)
 
 Introduccion a la programacion 
 
-# Integrantes del grupo
+# Integrantes del grupo nro 13
 
+**Valentin Bustos Villar** - Legajo 4019 - mail: valentinbv29@gmail.com - Github: Balenbv
+
+**Valentin Bustos Villar** - Legajo 4019 - mail: valentinbv29@gmail.com - Github: Balenbv
  
