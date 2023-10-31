@@ -7,7 +7,10 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
+/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github 
+Valentin Bustos Villar - Legajo 4019 - mail: valentinbv29@gmail.com - Github: Balenbv
+*/
+
 /* ****COMPLETAR***** */
 
 
