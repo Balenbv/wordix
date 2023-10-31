@@ -27,7 +27,9 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ *  esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max, tambien que sea un numero entero
+ * @param int $min, $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
