@@ -59,18 +59,19 @@ $numeroRandom = cargarColeccionPalabras();
 echo "Ingrese su nombre\n";
 $nombreJugador = trim(fgets(STDIN));
 
-
-echo "Seleccione una opción: \n";
-echo "1) Jugar al wordix con una palabra elegida\n2) Jugar al wordix con una palabra aleatoria\n3) Mostrar una partida\n4) Mostrar la primer partida ganadora\n5) Mostrar resumen de Jugador\n6) Mostrar listado de partidas ordenadas por jugador y por palabra\n7) Agregar una palabra de 5 letras a Wordix\n8) salir\n";
-$
+$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
+//print_r($partida);
+//imprimirResultado($partida);
 
 
 do {
-    $opcion = 0;
-    
+echo "Seleccione una opción: \n";
+echo "1) Jugar al wordix con una palabra elegida\n2) Jugar al wordix con una palabra aleatoria\n3) Mostrar una partida\n4) Mostrar la primer partida ganadora\n5) Mostrar resumen de Jugador\n6) Mostrar listado de partidas ordenadas por jugador y por palabra\n7) Agregar una palabra de 5 letras a Wordix\n8) salir\n";
+$opcion = trim(fgets(STDIN));
+
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            echo "\nelegiste la opcion 1";
 
             break;
         case 2: 
@@ -106,6 +107,3 @@ do {
 
 
 
-$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
-//print_r($partida);
-//imprimirResultado($partida);
