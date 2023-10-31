@@ -56,17 +56,16 @@ function cargarColeccionPalabras()
 
 
 //Proceso:
+echo "ingrese su nombre\n";
+$nombreJugador = trim(fgets(STDIN));
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+$partida = jugarWordix("MELON", strtolower($nombreJugador));
 //print_r($partida);
 //imprimirResultado($partida);
 
 
-
-
 do {
     $opcion = 0;
-
     
     switch ($opcion) {
         case 1: 

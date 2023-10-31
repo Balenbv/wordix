@@ -311,6 +311,7 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
  * @param array $estructuraPalabraIntento
  * @return bool
  */
+
 function esIntentoGanado($estructuraPalabraIntento)
 {
     $cantLetras = count($estructuraPalabraIntento);
