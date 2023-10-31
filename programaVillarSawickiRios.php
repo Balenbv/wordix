@@ -38,7 +38,7 @@ function cargarColeccionPalabras()
         "LAPIZ", "SILLA", "COCHE", "RADIO", "BOTON"
     ];
 
-    return ($coleccionPalabras);
+    return ($coleccionPalabras[rand(0,19)]);
 }
 
 /* ****COMPLETAR***** */
@@ -53,13 +53,13 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-
+$numeroRandom = cargarColeccionPalabras();
 
 //Proceso:
 echo "ingrese su nombre\n";
 $nombreJugador = trim(fgets(STDIN));
 
-$partida = jugarWordix("MELON", strtolower($nombreJugador));
+$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
 //print_r($partida);
 //imprimirResultado($partida);
 
