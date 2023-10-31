@@ -59,9 +59,9 @@ $partida = jugarWordix("MELON", strtolower("MaJo"));
 
 
 
-/*
+
 do {
-    $opcion = ...;
+    $opcion = 0;
 
     
     switch ($opcion) {
@@ -77,8 +77,26 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
-        
-            //...
+        case 4: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+
+            break;
+        case 5: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
+
+            break;
+        case 6: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
+
+            break;
+                   
+        case 7: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 7
+
+            break;
+        case 8: 
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 8    
     }
-} while ($opcion != X);
-*/
+    
+} while ($opcion != 8);
+
