@@ -64,7 +64,7 @@ $numeroRandom = cargarColeccionPalabras();
 
 
 do {
-echo "Seleccione una opción: \n";
+echo "\nSeleccione una opción: \n";
 echo "1) Jugar al wordix con una palabra elegida\n2) Jugar al wordix con una palabra aleatoria\n3) Mostrar una partida\n4) Mostrar la primer partida ganadora\n5) Mostrar resumen de Jugador\n6) Mostrar listado de partidas ordenadas por jugador y por palabra\n7) Agregar una palabra de 5 letras a Wordix\n8) salir\n";
 $opcion = trim(fgets(STDIN));
 
@@ -76,10 +76,24 @@ $opcion = trim(fgets(STDIN));
             $nombreJugador = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
             $numeroElegido = trim(fgets(STDIN)) -1;
+            $palabraSecretaArray = cargarColeccionPalabras();
+            $totalPalabras = count($palabraSecretaArray);
 
-            $palabraSecreta = cargarColeccionPalabras($coleccionPalabras[$numeroElegido]);
-            echo $palabraSecreta;
-            jugarWordix($palabraSecreta, strtolower($nombreJugador));
+            if ($numeroElegido >= 0 && $numeroElegido < $totalPalabras) {
+                
+                $palabraSecreta = $palabraSecretaArray[$numeroElegido];
+                jugarWordix($palabraSecreta, strtolower($nombreJugador));
+            }
+            else {
+                echo "*************\n****ERROR****\n*************\ningrese un valor entre 1 y ".$totalPalabras."\n\n";
+            }
+
+
+
+           
+
+
+
 
 
             break;
