@@ -154,7 +154,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *  convierte las letras de una palabra en mayusculas y evalua que tenga excatamente 5 letras, en caso contrario pide otra letra
+ * @return string 
  */
 function leerPalabra5Letras()
 {
