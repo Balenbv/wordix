@@ -56,12 +56,11 @@ function cargarColeccionPalabras()
 $numeroRandom = cargarColeccionPalabras();
 
 //Proceso:
-echo "Ingrese su nombre\n";
-$nombreJugador = trim(fgets(STDIN));
 
-$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
+
+//$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
 //print_r($partida);
-//imprimirResultado($partida);
+//imprimirResultado($partida); CONSULTAR EN CLASE
 
 
 do {
@@ -73,6 +72,8 @@ $opcion = trim(fgets(STDIN));
         case 1: 
             //Jugar al wordix con una palabra elegida
             //(Explicado a detalle en asana)
+            echo "Ingrese su nombre\n";
+            $nombreJugador = trim(fgets(STDIN));
 
             break;
         case 2: 
