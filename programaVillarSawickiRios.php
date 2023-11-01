@@ -71,36 +71,43 @@ $opcion = trim(fgets(STDIN));
 
     switch ($opcion) {
         case 1: 
-            echo "\nelegiste la opcion 1";
+            //Jugar al wordix con una palabra elegida
+            //(Explicado a detalle en asana)
 
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            //Jugar al wordix con una palabra aleatoria
+            //(Explicado a detalle en asana)
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            //Mostrar una partida
+            //(Explicado a detalle en asana)
 
             break;
         case 4: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            //Mostrar la primer partida ganadora
+            //(Explicado a detalle en asana)
 
             break;
         case 5: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
+            //Mostrar resumen de Jugador
+            //(Explicado a detalle en asana)
 
             break;
         case 6: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
+            //Mostrar listado de partidas ordenadas por jugador y por palabra
+            //(Explicado a detalle en asana)
 
             break;
                    
         case 7: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 7
+            //Agregar una palabra de 5 letras a Wordix
+            //(Explicado a detalle en asana)
 
             break;
         case 8: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 8    
+            //Salir: Sale del programa.    
     }
     
 } while ($opcion != 8);
