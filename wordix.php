@@ -122,7 +122,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Escribe un texto de bienvenida a un usuario en pantalla.
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
