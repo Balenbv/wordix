@@ -136,7 +136,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Esta funcion evalua la cantidad de caratacteres de una variable idealmente string y retorna "true" en caso de ser una palabra solo con letras y espacios.
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
