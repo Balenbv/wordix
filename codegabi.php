@@ -1,5 +1,7 @@
 <?php
-$datosUsuario = [];
-$Usuarios[0] =  $jugador1;
-$Usuarios[1] =  $jugador2;
+$arrayTest = [];
+$letraIntento = "f";
+$estado = "aprobado";
+array_push($arrayTest, ["letra" => $letraIntento, "estado" => $estado]);
 
+print_r($arrayTest);
