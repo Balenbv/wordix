@@ -54,13 +54,14 @@ function cargarColeccionPalabras()
 
 //Inicialización de variables:
 $numeroRandom = cargarColeccionPalabras();
-
 //Proceso:
 
 
 //$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
-//print_r($partida);
-//imprimirResultado($partida); //CONSULTAR EN CLASE
+
+
+//print_r($partida);                    //siempre fueron comentario, hay que crear una funcion con el nombre imprimirResultado :p
+//imprimirResultado($partida); 
 
 
 do {
@@ -76,7 +77,7 @@ $opcion = trim(fgets(STDIN));
             $nombreJugador = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
             $numeroElegido = trim(fgets(STDIN)) -1;
-            $palabraSecretaArray = cargarColeccionPalabras();
+            $palabraSecretaArray = cargarColeccionPalabras(); //corregir
             $totalPalabras = count($palabraSecretaArray);
 
             if ($numeroElegido >= 0 && $numeroElegido < $totalPalabras) {
