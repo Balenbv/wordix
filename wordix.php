@@ -27,7 +27,9 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ *  esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max, tambien que sea un numero entero
+ * @param int $min, $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -120,7 +122,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Escribe un texto de bienvenida a un usuario en pantalla.
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -133,7 +136,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Esta funcion evalua la cantidad de caratacteres de una variable idealmente string y retorna "true" en caso de ser una palabra solo con letras y espacios.
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
@@ -149,7 +154,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *  convierte las letras de una palabra en mayusculas y evalua que tenga excatamente 5 letras, en caso contrario pide otra letra
+ * @return string 
  */
 function leerPalabra5Letras()
 {
@@ -167,7 +173,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
  *@return array
  */
 function iniciarTeclado()
@@ -309,6 +315,7 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
  * @param array $estructuraPalabraIntento
  * @return bool
  */
+
 function esIntentoGanado($estructuraPalabraIntento)
 {
     $cantLetras = count($estructuraPalabraIntento);
@@ -347,16 +354,16 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 {
     /*Inicialización*/
     $arregloDeIntentosWordix = [];
-    $teclado = iniciarTeclado();
+    $teclado = iniciarTeclado(); //completar
     escribirMensajeBienvenida($nombreUsuario);
     $nroIntento = 1;
     do {
 
         echo "Comenzar con el Intento " . $nroIntento . ":\n";
         $palabraIntento = leerPalabra5Letras();
-        $indiceIntento = $nroIntento - 1;
-        $arregloDeIntentosWordix = analizarPalabraIntento($palabraWordix, $arregloDeIntentosWordix, $palabraIntento);
-        $teclado = actualizarTeclado($teclado, $arregloDeIntentosWordix[$indiceIntento]);
+        $indiceIntento = $nroIntento - 1;                                                                                  //******************************************************//
+        $arregloDeIntentosWordix = analizarPalabraIntento($palabraWordix, $arregloDeIntentosWordix, $palabraIntento);     //CONSULTAR ESTRUCTURA DE DATOS $arregloDeIntentosWordix//
+        $teclado = actualizarTeclado($teclado, $arregloDeIntentosWordix[$indiceIntento]);                                //******************************************************//
         /*Mostrar los resultados del análisis: */
         imprimirIntentosWordix($arregloDeIntentosWordix);
         escribirTeclado($teclado);

@@ -1,3 +1,7 @@
 <?php
+$arrayTest = [];
+$letraIntento = "f";
+$estado = "aprobado";
+array_push($arrayTest, ["letra" => $letraIntento, "estado" => $estado]);
 
-echo "Prueba";
+print_r($arrayTest);
