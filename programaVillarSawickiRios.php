@@ -53,7 +53,7 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-$numeroRandom = cargarColeccionPalabras();
+
 //Proceso:
 
 
@@ -101,6 +101,11 @@ $opcion = trim(fgets(STDIN));
         case 2: 
             //Jugar al wordix con una palabra aleatoria
             //(Explicado a detalle en asana)
+            echo "Ingrese su nombre\n";
+            $nombreJugador = trim(fgets(STDIN));
+            $numeroRandom = cargarColeccionPalabras();
+            jugarWordix($numeroRandom, strtolower($nombreJugador));
+            
 
             break;
         case 3: 
