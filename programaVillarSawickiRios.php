@@ -53,7 +53,6 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-$palabras = cargarColeccionPalabras();
 //Proceso:
 
 
