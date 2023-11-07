@@ -357,6 +357,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     $teclado = iniciarTeclado(); //completar
     escribirMensajeBienvenida($nombreUsuario);
     $nroIntento = 1;
+    $numPartidaGeneral = 0;
     do {
 
         echo "Comenzar con el Intento " . $nroIntento . ":\n";
@@ -390,6 +391,15 @@ function jugarWordix($palabraWordix, $nombreUsuario)
         "intentos" => $nroIntento,
         "puntaje" => $puntaje
     ];
-
+    $numPartidaGeneral++;
     return $partida;
+}
+
+
+
+
+function conteoGeneral($partidaTest){
+    $partidasGeneral=[];
+        array_push($partidasGeneral, $partidaTest);
+        print_r($partidasGeneral);
 }

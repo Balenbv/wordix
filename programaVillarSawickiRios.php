@@ -43,6 +43,11 @@ function cargarColeccionPalabras()
 
 /* ****COMPLETAR***** */
 
+$palabras = cargarColeccionPalabras();
+$totalPalabras = count($palabras);
+$partidaJugada = [];
+$datosGenerales = [];
+
 
 
 /**************************************/
@@ -76,31 +81,30 @@ $opcion = trim(fgets(STDIN));
             $nombreJugador = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
             $numeroElegido = trim(fgets(STDIN)) - 1; 
-            $totalPalabras = count($palabra);
 
             if ($numeroElegido >= 0 && $numeroElegido < $totalPalabras) {
                 
                 $palabraSecreta = $palabras[$numeroElegido];
-                jugarWordix($palabraSecreta, strtolower($nombreJugador));
+                $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreJugador));
+                array_push($datosGenerales, $partidaJugada);
+
             }
             else {
                 echo "*************\n****ERROR****\n*************\ningrese un valor entre 1 y ".$totalPalabras."\n\n";
             }
 
-
-
-           
-
-
-
-
-
+        
             break;
         case 2: 
             //Jugar al wordix con una palabra aleatoria
             //(Explicado a detalle en asana)
 
+            echo "Ingrese su nombre\n";
+            $nombreJugador = trim(fgets(STDIN));
+            $palabraSecreta = $palabras[rand(0,$totalPalabras)];
+            jugarWordix($palabraSecreta, strtolower($nombreJugador));
             break;
+
         case 3: 
             //Mostrar una partida
             //(Explicado a detalle en asana)
@@ -115,6 +119,7 @@ $opcion = trim(fgets(STDIN));
             //Mostrar resumen de Jugador
             //(Explicado a detalle en asana)
 
+            print_r($datosGenerales);
             break;
         case 6: 
             //Mostrar listado de partidas ordenadas por jugador y por palabra
