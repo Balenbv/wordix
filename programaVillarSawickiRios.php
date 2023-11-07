@@ -53,7 +53,7 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-$numeroRandom = cargarColeccionPalabras();
+$palabras = cargarColeccionPalabras();
 //Proceso:
 
 
@@ -76,13 +76,12 @@ $opcion = trim(fgets(STDIN));
             echo "Ingrese su nombre\n";
             $nombreJugador = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
-            $numeroElegido = trim(fgets(STDIN)) -1;
-            $palabraSecretaArray = cargarColeccionPalabras(); //corregir
-            $totalPalabras = count($palabraSecretaArray);
+            $numeroElegido = trim(fgets(STDIN)) - 1; 
+            $totalPalabras = count($palabras);
 
             if ($numeroElegido >= 0 && $numeroElegido < $totalPalabras) {
                 
-                $palabraSecreta = $palabraSecretaArray[$numeroElegido];
+                $palabraSecreta = $palabras[$numeroElegido];
                 jugarWordix($palabraSecreta, strtolower($nombreJugador));
             }
             else {
