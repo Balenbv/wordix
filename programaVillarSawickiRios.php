@@ -25,7 +25,7 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**************************************/
 
 /**
- * Obtiene una colección de palabras
+ * Obtiene una colección de palabrasDisponibles
  * 
  * @return array
  */
@@ -43,8 +43,8 @@ function cargarColeccionPalabras()
 
 /* ****COMPLETAR***** */
 
-$palabras = cargarColeccionPalabras();
-$totalPalabras = count($palabras);
+$palabrasDisponibles = cargarColeccionPalabras();
+$cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 $datosGenerales = [];
 
@@ -82,15 +82,15 @@ $opcion = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
             $numeroElegido = trim(fgets(STDIN)) - 1; 
 
-            if ($numeroElegido >= 0 && $numeroElegido < $totalPalabras) {
+            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
                 
-                $palabraSecreta = $palabras[$numeroElegido];
+                $palabraSecreta = $palabrasDisponibles[$numeroElegido];
                 $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreJugador));
                 array_push($datosGenerales, $partidaJugada);
 
             }
             else {
-                echo "*************\n****ERROR****\n*************\ningrese un valor entre 1 y ".$totalPalabras."\n\n";
+                echo "*************\n****ERROR****\n*************\ningrese un valor entre 1 y ".$cantLetrasDePalabraOculta."\n\n";
             }
 
         
@@ -101,8 +101,9 @@ $opcion = trim(fgets(STDIN));
 
             echo "Ingrese su nombre\n";
             $nombreJugador = trim(fgets(STDIN));
-            $palabraSecreta = $palabras[rand(0,$totalPalabras)];
-            jugarWordix($palabraSecreta, strtolower($nombreJugador));
+            $palabraSecreta = $palabrasDisponibles[rand(0,$cantLetrasDePalabraOculta)];
+            $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreJugador));
+            array_push($datosGenerales, $partidaJugada);
             break;
 
         case 3: 
