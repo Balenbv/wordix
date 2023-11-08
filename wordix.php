@@ -335,15 +335,17 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * 
+ * Esta funcion calcula un puntaje dependiendo de las letras de la palabra encontrada
+ * @param int $cantIntentos
+ * @param string $palabraEncontrada
+ * @return int
  */
 function obtenerPuntajeWordix($cantIntentos, $palabraEncontrada)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
-    //
     $puntaje = 7;
     $puntaje -= $cantIntentos ;
 
-    $puntosLetras = ["A" => 1, "E" => 1, "I" => 1, "O" => 1, "U" => 1,
+    $puntosLetras = ["A"=>1,"E"=>1,"I"=>1,"O"=>1,"U"=> 1,
     "B"=>2,"C"=>2,"D"=>2,"F"=>2,"G"=>2,"H"=>2,"J"=>2,"K"=>2,"L"=>2,"M"=>2,
     "N"=>1,"P"=>1,"Q"=>1,"R"=>1,"S"=>1,"T"=>1,"V"=>1,"W"=>1,"X"=>1,"Y"=>1,"Z"=>1 ];
 
