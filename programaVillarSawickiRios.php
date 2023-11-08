@@ -132,8 +132,23 @@ $opcion = trim(fgets(STDIN));
 
             break;
         case 4: 
-            //Mostrar la primer partida ganadora
-            //(Explicado a detalle en asana)
+            $victoria = false;
+            $numPartida = 1;
+          echo "ingrese el nombre\n";
+          $nombreDelJugador = trim(fgets(STDIN));
+
+          foreach($datosGenerales as $partida){
+            if ($partida["jugador"] == $nombreDelJugador && $partida["puntaje"] != 0){
+                echo "\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]."\n";
+                $victoria = true;
+                break;
+            }
+            $numPartida++;
+          }
+
+          if (!$victoria) {
+            echo "\n".$nombreDelJugador." Nunca gano una partida.\n";
+    }
 
             break;
         case 5: 
