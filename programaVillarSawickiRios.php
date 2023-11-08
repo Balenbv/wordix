@@ -41,29 +41,31 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/* ****COMPLETAR***** */
-
-
-$palabrasDisponibles = cargarColeccionPalabras();
-$cantLetrasDePalabraOculta = count($palabrasDisponibles);
-$partidaJugada = [];
-$datosGenerales = [];
-$partidasjugadoresGenerales = [];
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
 //Declaración de variables:
+/*
+    array $palabrasDisponibles
+    int   $cantLetrasDeLaPalabra
+    array $partidaJugada
+    array $datosGenerales
+    array $partidasJugadoresGenerales
 
+
+*/
 
 //Inicialización de variables:
+$palabrasDisponibles = cargarColeccionPalabras();
+$cantLetrasDePalabraOculta = count($palabrasDisponibles);
+$partidaJugada = [];
+$datosGenerales = [];
+$partidasjugadoresGenerales = [];
 //Proceso:
 
 
-//$partida = jugarWordix($numeroRandom, strtolower($nombreDelJugador));
 
 
 //print_r($partida);                    //siempre fueron comentario, hay que crear una funcion con el nombre imprimirResultado :p
