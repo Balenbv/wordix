@@ -61,7 +61,7 @@ $datosGenerales = [];
 //Proceso:
 
 
-//$partida = jugarWordix($numeroRandom, strtolower($nombreJugador));
+//$partida = jugarWordix($numeroRandom, strtolower($nombreDelJugador));
 
 
 //print_r($partida);                    //siempre fueron comentario, hay que crear una funcion con el nombre imprimirResultado :p
@@ -78,14 +78,14 @@ $opcion = trim(fgets(STDIN));
             //Jugar al wordix con una palabra elegida
             //(Explicado a detalle en asana)
             echo "Ingrese su nombre\n";
-            $nombreJugador = trim(fgets(STDIN));
+            $nombreDelJugador = trim(fgets(STDIN));
             echo "ingrese el numero de palabra que desea jugar:\n";
             $numeroElegido = trim(fgets(STDIN)) - 1; 
 
             if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
                 
                 $palabraSecreta = $palabrasDisponibles[$numeroElegido];
-                $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreJugador));
+                $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
                 array_push($datosGenerales, $partidaJugada);
 
             }
@@ -100,9 +100,9 @@ $opcion = trim(fgets(STDIN));
             //(Explicado a detalle en asana)
 
             echo "Ingrese su nombre\n";
-            $nombreJugador = trim(fgets(STDIN));
+            $nombreDelJugador = trim(fgets(STDIN));
             $palabraSecreta = $palabrasDisponibles[rand(0,$cantLetrasDePalabraOculta)];
-            $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreJugador));
+            $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
             array_push($datosGenerales, $partidaJugada);
             break;
 
