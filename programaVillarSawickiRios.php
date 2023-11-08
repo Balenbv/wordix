@@ -142,7 +142,7 @@ $opcion = trim(fgets(STDIN));
         case 4: 
             $victoria = false;
             $numPartida = 1;
-          echo "ingrese el nombre\n";
+          echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
 
           foreach($datosGenerales as $partida){
