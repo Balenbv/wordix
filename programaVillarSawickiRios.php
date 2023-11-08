@@ -43,6 +43,7 @@ function cargarColeccionPalabras()
 
 /* ****COMPLETAR***** */
 
+
 $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
@@ -110,15 +111,24 @@ $opcion = trim(fgets(STDIN));
             //Mostrar una partida
             //(Explicado a detalle en asana)
 
-            
+            $cantidadDePartidas = count($datosGenerales);
             echo "Ingrese el número de partida que desee ver: ";
             $numReview = trim(fgets(STDIN));
             $numReview -= 1;
+            if ((($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
             $reviewPalabra = $datosGenerales[$numReview]["palabraWordix"];
             $reviewJugador = $datosGenerales[$numReview]["jugador"];
             $reviewIntentos = $datosGenerales[$numReview]["intentos"];
             $reviewPuntaje = $datosGenerales[$numReview]["puntaje"];
-            echo "\nPartida WORDIX: ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";
+            if($reviewPuntaje == 0){           
+                echo "\nPartida WORDIX ".$cantidadDePartidas,": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n";
+            }else{
+                echo "\nPartida WORDIX ".$cantidadDePartidas,": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";          
+            }
+            
+        }else{
+            echo "Número fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.";
+        }
 
             break;
         case 4: 
