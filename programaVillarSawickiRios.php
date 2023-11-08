@@ -48,6 +48,7 @@ $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 $datosGenerales = [];
+$partidasjugadoresGenerales = [];
 
 
 
@@ -80,18 +81,25 @@ $opcion = trim(fgets(STDIN));
             //(Explicado a detalle en asana)
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
-            echo "ingrese el numero de palabra que desea jugar:\n";
-            $numeroElegido = trim(fgets(STDIN)) - 1; 
+            echo "Ingrese el número de palabra que desea jugar:\n";
+            $numeroElegido = trim(fgets(STDIN)) - 1;
 
-            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
-                
-                $palabraSecreta = $palabrasDisponibles[$numeroElegido];
-                $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-                array_push($datosGenerales, $partidaJugada);
-
+          
+            if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
+                $partidasjugadoresGenerales[$nombreDelJugador] = [];
             }
-            else {
-                echo "*************\n****ERROR****\n*************\ningrese un valor entre 1 y ".$cantLetrasDePalabraOculta."\n\n";
+            
+            if (!in_array($numeroElegido, $partidasjugadoresGenerales[$nombreDelJugador])) {
+                if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
+                    $palabraSecreta = $palabrasDisponibles[$numeroElegido];
+                    $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
+                    array_push($datosGenerales, $partidaJugada);
+                    array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroElegido);
+                } else {
+                    echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
+                }
+            } else {
+                echo "El número de partida ya ha sido jugado por ".$nombreDelJugador,", por favor elija otro.\n";
             }
 
         
