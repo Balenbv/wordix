@@ -110,6 +110,16 @@ $opcion = trim(fgets(STDIN));
             //Mostrar una partida
             //(Explicado a detalle en asana)
 
+            
+            echo "Ingrese el número de partida que desee ver: ";
+            $numReview = trim(fgets(STDIN));
+            $numReview -= 1;
+            $reviewPalabra = $datosGenerales[$numReview]["palabraWordix"];
+            $reviewJugador = $datosGenerales[$numReview]["jugador"];
+            $reviewIntentos = $datosGenerales[$numReview]["intentos"];
+            $reviewPuntaje = $datosGenerales[$numReview]["puntaje"];
+            echo "\nPartida WORDIX: ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";
+
             break;
         case 4: 
             //Mostrar la primer partida ganadora
