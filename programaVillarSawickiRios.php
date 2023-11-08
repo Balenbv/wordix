@@ -40,8 +40,6 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
-
-
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -51,7 +49,7 @@ function cargarColeccionPalabras()
     array $palabrasDisponibles
     int   $cantLetrasDeLaPalabra
     array $partidaJugada
-    array $datosGenerales
+    array $coleccionPartidas
     array $partidasJugadoresGenerales
 
 
@@ -61,8 +59,19 @@ function cargarColeccionPalabras()
 $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
-$datosGenerales = [];
 $partidasjugadoresGenerales = [];
+$coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
+["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    //2
+["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  //3
+["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
+["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
+["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
+["palabraWordix"=> "SILLA" , "jugador" => "calemchu", "intentos"=> 7, "puntaje" => 0],                   //7
+["palabraWordix"=> "MELON" , "jugador" => "puchito", "intentos"=> 5, "puntaje" => 9],                    //8
+["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
+["palabraWordix"=> "TINTO" , "jugador" => "cau", "intentos"=> 3, "puntaje" => 9],                        //10
+];
+
 //Proceso:
 
 
@@ -95,7 +104,7 @@ $opcion = trim(fgets(STDIN));
                 if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
                     $palabraSecreta = $palabrasDisponibles[$numeroElegido];
                     $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-                    array_push($datosGenerales, $partidaJugada);
+                    array_push($coleccionPartidas, $partidaJugada);
                     array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroElegido);
                 } else {
                     echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
@@ -114,22 +123,22 @@ $opcion = trim(fgets(STDIN));
             $nombreDelJugador = trim(fgets(STDIN));
             $palabraSecreta = $palabrasDisponibles[rand(0,$cantLetrasDePalabraOculta)];
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-            array_push($datosGenerales, $partidaJugada);
+            array_push($coleccionPartidas, $partidaJugada);
             break;
 
         case 3: 
             //Mostrar una partida
             //(Explicado a detalle en asana)
 
-            $cantidadDePartidas = count($datosGenerales);
+            $cantidadDePartidas = count($coleccionPartidas);
             echo "Ingrese el número de partida que desee ver: ";
             $numReview = trim(fgets(STDIN));
             $numReview -= 1;
             if ((($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
-            $reviewPalabra = $datosGenerales[$numReview]["palabraWordix"];
-            $reviewJugador = $datosGenerales[$numReview]["jugador"];
-            $reviewIntentos = $datosGenerales[$numReview]["intentos"];
-            $reviewPuntaje = $datosGenerales[$numReview]["puntaje"];
+            $reviewPalabra = $coleccionPartidas[$numReview]["palabraWordix"];
+            $reviewJugador = $coleccionPartidas[$numReview]["jugador"];
+            $reviewIntentos = $coleccionPartidas[$numReview]["intentos"];
+            $reviewPuntaje = $coleccionPartidas[$numReview]["puntaje"];
             if($reviewPuntaje == 0){           
                 echo "\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n";
             }else{
@@ -144,13 +153,15 @@ $opcion = trim(fgets(STDIN));
         case 4: 
             $victoria = false;
             $numPartida = 1;
+            $stopCiclos = 1;
           echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
 
-          foreach($datosGenerales as $partida){
-            if ($partida["jugador"] == $nombreDelJugador && $partida["puntaje"] != 0){
+          foreach($coleccionPartidas as $partida){
+            if ($partida["jugador"] == $nombreDelJugador && $partida["puntaje"] != 0 && $stopCiclos == 1){
                 echo "\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]."\n";
                 $victoria = true;
+                $stopCiclos++;
                 break;
             }
             $numPartida++;
@@ -165,7 +176,7 @@ $opcion = trim(fgets(STDIN));
             //Mostrar resumen de Jugador
             //(Explicado a detalle en asana)
 
-            print_r($datosGenerales);
+            print_r($coleccionPartidas);
             break;
         case 6: 
             //Mostrar listado de partidas ordenadas por jugador y por palabra
