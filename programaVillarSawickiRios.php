@@ -121,9 +121,9 @@ $opcion = trim(fgets(STDIN));
             $reviewIntentos = $datosGenerales[$numReview]["intentos"];
             $reviewPuntaje = $datosGenerales[$numReview]["puntaje"];
             if($reviewPuntaje == 0){           
-                echo "\nPartida WORDIX ".$cantidadDePartidas,": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n";
+                echo "\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n";
             }else{
-                echo "\nPartida WORDIX ".$cantidadDePartidas,": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";          
+                echo "\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";          
             }
             
         }else{
