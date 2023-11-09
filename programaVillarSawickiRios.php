@@ -59,7 +59,8 @@ function cargarColeccionPalabras()
 $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
-$partidasjugadoresGenerales = [];
+//Partidas pre-cargadas
+$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
 $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
 ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    //2
 ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  //3
@@ -73,9 +74,6 @@ $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intento
 ];
 
 //Proceso:
-
-
-
 
 //print_r($partida);                    //siempre fueron comentario, hay que crear una funcion con el nombre imprimirResultado :p
 //imprimirResultado($partida); 
@@ -241,7 +239,7 @@ $opcion = trim(fgets(STDIN));
         case 6: 
             //Mostrar listado de partidas ordenadas por jugador y por palabra
             //(Explicado a detalle en asana)
-            print_r($coleccionPartidas);
+            print_r($partidasjugadoresGenerales);
             break;
         case 7: 
             //Agregar una palabra de 5 letras a Wordix
