@@ -1,5 +1,13 @@
 <?php
-$arrayMayor = ["B" => 4];
+function esMenor($a, $b){
+    return $a > $b;
+}
 
-echo $arrayMayor["B"];
+
+$arrayTest = ['a'=>10,'b'=>3,'c'=>2,'d'=>100];
+
+uasort($arrayTest, 'esMenor');
+
+print_r($arrayTest);
+
 

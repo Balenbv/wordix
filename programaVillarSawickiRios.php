@@ -172,24 +172,12 @@ $opcion = trim(fgets(STDIN));
     }
 
             break;
+
         case 5:
-
-            $numPartida = 1;
-
-            echo "Ingrese el nombre\n";
+            
+        echo "ingrese el nombre del jugador a buscar: \n";
             $nombreDelJugador = trim(fgets(STDIN));
-  
-            foreach($coleccionPartidas as $partida){
-              if ($partida["jugador"] == $nombreDelJugador){
-                  echo "\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]."\n";
-                  $victoria = true;
-              }
-              $numPartida++;
-            }
-  
-            if (!$victoria) {
-              echo "\n".$nombreDelJugador." Nunca gano una partida.\n";
-      }
+      
 
 
             break;
