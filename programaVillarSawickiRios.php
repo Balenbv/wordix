@@ -126,18 +126,44 @@ $opcion = trim(fgets(STDIN));
             }  
 
             break;
+
         case 2: 
             //Jugar al wordix con una palabra aleatoria
             //(Explicado a detalle en asana)
 
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
-
-            $palabraSecreta = $palabrasDisponibles[rand(0,$cantLetrasDePalabraOculta)];
-
+            $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);
+            $partidaRepetida = false;
+             //Checkea si el array del jugador está creado, si no lo está, lo crea.
+             if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
+                $partidasjugadoresGenerales[$nombreDelJugador] = [];
+            }    
+            //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
+            do {
+                if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
+                    break;
+                }
+                $numeroAleatorio = rand(0, ($cantLetrasDePalabraOculta -1));
+                $partidaRepetida = false;
+                foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
+                    if ($numero == $numeroAleatorio) {
+                        $partidaRepetida = true;
+                        break;
+                    }
+                }
+            } while ($partidaRepetida);
+            //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
+            if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
+                echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
+                break;
+            }
+            $palabraSecreta = $palabrasDisponibles[$numeroAleatorio];
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
             array_push($coleccionPartidas, $partidaJugada);
+            array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroAleatorio);
             break;
+
 
         case 3: 
             //Mostrar una partida
