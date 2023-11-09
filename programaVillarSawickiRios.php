@@ -87,33 +87,46 @@ echo "1) Jugar al wordix con una palabra elegida\n2) Jugar al wordix con una pal
 $opcion = trim(fgets(STDIN));
 
     switch ($opcion) {
-        case 1: 
+        case 1:          
             //Jugar al wordix con una palabra elegida
             //(Explicado a detalle en asana)
+
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
             echo "Ingrese el número de palabra que desea jugar:\n";
-            $numeroElegido = trim(fgets(STDIN)) - 1;
-
-          
-            if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
-                $partidasjugadoresGenerales[$nombreDelJugador] = [];
-            }
+            $numeroElegido = trim(fgets(STDIN));
+            $numeroElegido -= 1;          
+            $partidaRepetida = false;
             
-            if (!in_array($numeroElegido, $partidasjugadoresGenerales[$nombreDelJugador])) {
-                if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
+            //Checkea que el número ingresado este dentro del rango.
+            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
+
+                //Checkea si el array del jugador está creado, si no lo está, lo crea.
+                if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
+                    $partidasjugadoresGenerales[$nombreDelJugador] = [];
+                }
+
+                //Revisa en todo el array si la palabra coincide con el número elejido.         
+                foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
+                    if ($numero == $numeroElegido) {
+                        $partidaRepetida = true;
+                        break;
+                    }
+                }
+                
+                //Si el número no coincide se juega la partida, si coincide sale un mensaje de error. 
+                if (!$partidaRepetida) {
                     $palabraSecreta = $palabrasDisponibles[$numeroElegido];
                     $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
                     array_push($coleccionPartidas, $partidaJugada);
                     array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroElegido);
                 } else {
-                    echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
+                    echo "El número de partida ya ha sido jugado por " . $nombreDelJugador . ", por favor elija otro.\n";
                 }
             } else {
-                echo "El número de partida ya ha sido jugado por ".$nombreDelJugador,", por favor elija otro.\n";
-            }
+                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
+            }  
 
-        
             break;
         case 2: 
             //Jugar al wordix con una palabra aleatoria
@@ -190,7 +203,8 @@ $opcion = trim(fgets(STDIN));
 
             break;
         case 8: 
-            //Salir: Sale del programa.    
+            //Salir: Sale del programa.
+            echo "Gracias por jugar Wordix, vuelva pronto!";    
     }
     
 } while ($opcion != 8);
