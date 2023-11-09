@@ -132,7 +132,9 @@ $opcion = trim(fgets(STDIN));
 
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
+
             $palabraSecreta = $palabrasDisponibles[rand(0,$cantLetrasDePalabraOculta)];
+
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
             array_push($coleccionPartidas, $partidaJugada);
             break;
