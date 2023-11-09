@@ -213,10 +213,54 @@ $opcion = trim(fgets(STDIN));
             break;
 
         case 5:
-            
-        echo "ingrese el nombre del jugador a buscar: \n";
-            $nombreDelJugador = trim(fgets(STDIN));
-      
+            $partidasQueJugo = 0;
+            $puntajeTotalJugador = 0;
+            $contIntentos1 =0;
+            $contIntentos2 =0;
+            $contIntentos3 =0;
+            $contIntentos4 =0;
+            $contIntentos5 =0;
+            $contIntentos6 =0;
+            $porcentajeDeVictoria = 0;
+            echo "ingrese el nombre del jugador a buscar: \n";
+                $nombreDelJugador = trim(fgets(STDIN));
+
+                foreach ($coleccionPartidas as $estadiscticasJugador){
+                    if ($estadiscticasJugador["jugador"] == $nombreDelJugador ) {
+                        $partidasQueJugo++;
+                        $puntajeTotalJugador += $estadiscticasJugador["puntaje"];
+
+                        if($estadiscticasJugador["intentos"] == 1){
+                            $contIntentos1++;
+                        }
+                        if ($estadiscticasJugador["intentos"] == 2){
+                            $contIntentos2++;
+                        }
+                        if ($estadiscticasJugador["intentos"] == 3){
+                            $contIntentos3++;
+                        }
+                        if($estadiscticasJugador["intentos"] == 4){
+                            $contIntentos4++;
+                        }
+                        if($estadiscticasJugador["intentos"] == 5){
+                            $contIntentos5++;
+                        }
+                        if($estadiscticasJugador["intentos"] == 6){
+                            $contIntentos6++;
+                        }
+                    }
+                }
+                $cantPartidasGanadasJugador = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
+                $porcentajeDeVictoria = ($partidasQueJugo / $cantPartidasGanadasJugador)*100;
+
+                echo "\nJugador: ".$nombreDelJugador."\nPartidas: ".$partidasQueJugo."\nPuntaje Total: ".$puntajeTotalJugador."\nVictorias: ". $porcentajeDeVictoria."%\nAdivinadas: ";
+                echo "\nIntento 1: ".$contIntentos1.
+                    "\nIntento 2: ".$contIntentos2.
+                    "\nIntento 3: ".$contIntentos3.
+                    "\nIntento 4: ".$contIntentos4.
+                    "\nIntento 5: ".$contIntentos5.
+                    "\nIntento 6: ".$contIntentos6. "\n";
+
 
 
             break;
