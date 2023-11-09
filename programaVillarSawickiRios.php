@@ -172,18 +172,32 @@ $opcion = trim(fgets(STDIN));
     }
 
             break;
-        case 5: 
-            //Mostrar resumen de Jugador
-            //(Explicado a detalle en asana)
+        case 5:
 
-            print_r($coleccionPartidas);
+            $numPartida = 1;
+
+            echo "Ingrese el nombre\n";
+            $nombreDelJugador = trim(fgets(STDIN));
+  
+            foreach($coleccionPartidas as $partida){
+              if ($partida["jugador"] == $nombreDelJugador){
+                  echo "\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]."\n";
+                  $victoria = true;
+              }
+              $numPartida++;
+            }
+  
+            if (!$victoria) {
+              echo "\n".$nombreDelJugador." Nunca gano una partida.\n";
+      }
+
+
             break;
         case 6: 
             //Mostrar listado de partidas ordenadas por jugador y por palabra
             //(Explicado a detalle en asana)
-
+            print_r($coleccionPartidas);
             break;
-                   
         case 7: 
             //Agregar una palabra de 5 letras a Wordix
             //(Explicado a detalle en asana)
