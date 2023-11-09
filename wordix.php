@@ -407,12 +407,3 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     $numPartidaGeneral++;
     return $partida;
 }
-
-
-
-
-function conteoGeneral($partidaTest){
-    $partidasGeneral=[];
-        array_push($partidasGeneral, $partidaTest);
-        print_r($partidasGeneral);
-}

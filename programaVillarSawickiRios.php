@@ -66,7 +66,7 @@ $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intento
 ["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
 ["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
 ["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
-["palabraWordix"=> "SILLA" , "jugador" => "calemchu", "intentos"=> 7, "puntaje" => 0],                   //7
+["palabraWordix"=> "SILLA" , "jugador" => "calemchu", "intentos"=> 7, "puntaje" => 0],                   //7  
 ["palabraWordix"=> "MELON" , "jugador" => "puchito", "intentos"=> 5, "puntaje" => 9],                    //8
 ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
 ["palabraWordix"=> "TINTO" , "jugador" => "cau", "intentos"=> 3, "puntaje" => 9],                        //10
@@ -185,18 +185,20 @@ $opcion = trim(fgets(STDIN));
     }
 
             break;
-        case 5: 
-            //Mostrar resumen de Jugador
-            //(Explicado a detalle en asana)
 
-            print_r($coleccionPartidas);
+        case 5:
+            
+        echo "ingrese el nombre del jugador a buscar: \n";
+            $nombreDelJugador = trim(fgets(STDIN));
+      
+
+
             break;
         case 6: 
             //Mostrar listado de partidas ordenadas por jugador y por palabra
             //(Explicado a detalle en asana)
-
+            print_r($coleccionPartidas);
             break;
-                   
         case 7: 
             //Agregar una palabra de 5 letras a Wordix
             //(Explicado a detalle en asana)
