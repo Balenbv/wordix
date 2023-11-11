@@ -26,6 +26,7 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 
 /**
  * Obtiene una colección de palabrasDisponibles
+ * 
  * Función 1:
  * La función inicializa una estructura de datos con ejemplos de palabras de cinco letras en mayúsculas y
  * retorna esta misma colección.
