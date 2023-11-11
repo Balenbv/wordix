@@ -68,6 +68,21 @@ function cargarColeccionPalabras()
     $palabraDeCincoLetras = strtoupper($palabraDeCincoLetras);
     return $palabraDeCincoLetras;
 }
+/**
+ * Esta funcion agarra 2 arrays asociativos y los compara para determinar cual es nombre del jugador alfabeticamente menor, en caso de ser iguales compara sus palabras jugadas
+ * @param array $array1
+ * @param array $array2
+ * @return int
+ */
+function miComparacion($array1, $array2){
+    $comparacionNombreJugador = strcmp ($array1["jugador"], $array2["jugador"]);
+    $comparacionPalabraJugada = strcmp($array1["palabraWordix"], $array2["palabraWordix"]);
+        if ($comparacionNombreJugador != 0){
+            return $comparacionNombreJugador;
+        } else {
+            return $comparacionPalabraJugada;
+        }
+}
 
 /**
  * Función 7:
@@ -311,9 +326,9 @@ $opcion = trim(fgets(STDIN));
 
             break;
         case 6: 
-            //Mostrar listado de partidas ordenadas por jugador y por palabra
-            //(Explicado a detalle en asana)
-            print_r($partidasjugadoresGenerales);
+            uasort($coleccionPartidas, 'miComparacion');
+
+            print_r($coleccionPartidas);
             break;
         case 7: 
             //Agregar una palabra de 5 letras a Wordix utilizando las funciones 4 y 7.
