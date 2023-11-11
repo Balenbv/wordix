@@ -12,22 +12,17 @@ $coleccionPartidas = [
 ["palabraWordix"=> "TINTO" , "jugador" => "cau", "intentos"=> 3, "puntaje" => 9],                        //10
 ];
 
-function comparacion ($arrayComparativo1, $arrayComparativo2){
 
-    $num = 1; 
-    if ($arrayComparativo1["palabraWordix"] == $arrayComparativo2["palabraWordix"]){
-        $num = 0;
-    } elseif (($arrayComparativo1["jugador"] < $arrayComparativo2["jugador"])) {
-        $num = -1;
-    }
-    return $num;
+function miComparacion($arrayComparativo1, $arrayComparativo2){
+    $comparacionNombreJugador = strcmp ($arrayComparativo1["jugador"], $arrayComparativo2["jugador"]);
+    $comparacionPalabraJugada = strcmp($arrayComparativo1["palabraWordix"], $arrayComparativo2["palabraWordix"]);
+        if ($comparacionNombreJugador != 0){
+            return $comparacionNombreJugador;
+        } else {
+            return $comparacionPalabraJugada;
+        }
 }
 
-function mostrarColeccionPartida($coleccionPartidas){
-    uasort($coleccionPartidas, 'comparacion');
-    print_r($coleccionPartidas);
-}
+uasort($coleccionPartidas, 'miComparacion');
 
-mostrarColeccionPartida($coleccionPartidas);
-
-
+print_r($coleccionPartidas);
