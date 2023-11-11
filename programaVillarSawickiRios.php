@@ -69,6 +69,23 @@ function cargarColeccionPalabras()
     return $palabraDeCincoLetras;
 }
 
+/**
+ * Función 7:
+ * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
+ * 
+ * @param array $coleccionPalabrasAAgregar
+ * @param string $palabra
+ * @return array $coleccionPalabrasAAgregar
+ * 
+ */
+
+ function agregarPalabra($coleccionPalabrasAAgregar , $palabra) {
+    //int $cantPalabras
+    $cantPalabras = count($coleccionPalabrasAAgregar);
+    $coleccionPalabrasAAgregar[$cantPalabras] = $palabra;
+    return $coleccionPalabrasAAgregar;
+ }
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -299,8 +316,13 @@ $opcion = trim(fgets(STDIN));
             print_r($partidasjugadoresGenerales);
             break;
         case 7: 
-            //Agregar una palabra de 5 letras a Wordix
-            //(Explicado a detalle en asana)
+            //Agregar una palabra de 5 letras a Wordix utilizando las funciones 4 y 7.
+            
+            //Solicita la nueva palabra que se agregará.
+            $palabraAAgregar = solicitarPalabraDeCincoLetras();
+
+            //Agrega la palabra a la coleccón.
+            $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
 
             break;
         case 8: 
