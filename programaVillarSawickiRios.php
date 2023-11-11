@@ -27,6 +27,10 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**
  * Obtiene una colección de palabrasDisponibles
  * 
+ * Función 1:
+ * La función inicializa una estructura de datos con ejemplos de palabras de cinco letras en mayúsculas y
+ * retorna esta misma colección.
+ * 
  * @return array
  */
 function cargarColeccionPalabras()
@@ -40,6 +44,48 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
+
+/**
+ * Función 4:
+ * La función le pide al usuario una plabra de 5 letras y, luego de verificar que lo sea, la retorna en mayusculas.
+ * 
+ * @return string
+ * 
+ */
+
+ function solicitarPalabraDeCincoLetras() {
+    echo "\n";
+    echo "Ingrese una palabra de 5 letras: ";
+    $palabraDeCincoLetras = trim(fgets(STDIN));
+    $cantLetras = strlen($palabraDeCincoLetras);
+    while(!esPalabra($palabraDeCincoLetras) || $cantLetras != 5) {
+        echo "\n";
+        echo "Inténtelo nuevamente.\n";
+        echo "Ingrese una palabra de 5 letras: ";
+        $palabraDeCincoLetras = trim(fgets(STDIN));
+        $cantLetras = strlen($palabraDeCincoLetras);
+    }
+    $palabraDeCincoLetras = strtoupper($palabraDeCincoLetras);
+    return $palabraDeCincoLetras;
+}
+
+/**
+ * Función 7:
+ * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
+ * 
+ * @param array $coleccionPalabrasAAgregar
+ * @param string $palabra
+ * @return array $coleccionPalabrasAAgregar
+ * 
+ */
+
+ function agregarPalabra($coleccionPalabrasAAgregar , $palabra) {
+    //int $cantPalabras
+    $cantPalabras = count($coleccionPalabrasAAgregar);
+    $coleccionPalabrasAAgregar[$cantPalabras] = $palabra;
+    return $coleccionPalabrasAAgregar;
+ }
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -270,8 +316,15 @@ $opcion = trim(fgets(STDIN));
             print_r($partidasjugadoresGenerales);
             break;
         case 7: 
-            //Agregar una palabra de 5 letras a Wordix
-            //(Explicado a detalle en asana)
+            //Agregar una palabra de 5 letras a Wordix utilizando las funciones 4 y 7.
+            
+            //Solicita la nueva palabra que se agregará.
+            $palabraAAgregar = solicitarPalabraDeCincoLetras();
+
+            //Agrega la palabra a la coleccón.
+            $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
+
+            echo "\nLa palabra fue agregada de manera exitosa.\n";
 
             break;
         case 8: 

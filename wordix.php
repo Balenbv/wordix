@@ -27,7 +27,9 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max, tambien que sea un numero entero
+ * Función 5:
+ *  Esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max y
+ * también determina que sea un numero entero.
  * @param int $min, $max
  * @return int
  */
@@ -136,7 +138,8 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * Esta funcion evalua la cantidad de caratacteres de una variable idealmente string y retorna "true" en caso de ser una palabra solo con letras y espacios.
+ *  Esta funcion evalua la cantidad de caratacteres de una variable idealmente string y 
+ * retorna "true" en caso de ser una palabra solo con letras y espacios.
  * @param string $cadena
  * @return boolean
  */
@@ -154,7 +157,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  convierte las letras de una palabra en mayusculas y evalua que tenga excatamente 5 letras, en caso contrario pide otra letra
+ *  Esta función convierte las letras de una palabra en mayusculas y evalua que tenga excatamente 5 letras, 
+ * en caso contrario pide otra letra.
  * @return string 
  */
 function leerPalabra5Letras()
@@ -221,7 +225,7 @@ function escribirTeclado($teclado)
 
 
 /**
- * Escribe en pantalla los intentos de Wordix para adivinar la palabra
+ * Escribe en pantalla los intentos de Wordix para adivinar la palabra.
  * @param array $estruturaIntentosWordix
  */
 function imprimirIntentosWordix($estructuraIntentosWordix)
