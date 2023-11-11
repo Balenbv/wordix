@@ -324,6 +324,8 @@ $opcion = trim(fgets(STDIN));
             //Agrega la palabra a la coleccón.
             $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
 
+            echo "\nLa palabra fue agregada de manera exitosa.\n";
+
             break;
         case 8: 
             //Salir: Sale del programa.
