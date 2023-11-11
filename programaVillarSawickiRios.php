@@ -44,6 +44,31 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
+
+/**
+ * Función 4:
+ * La función le pide al usuario una plabra de 5 letras y, luego de verificar que lo sea, la retorna en mayusculas.
+ * 
+ * @return string
+ * 
+ */
+
+ function solicitarPalabraDeCincoLetras() {
+    echo "\n";
+    echo "Ingrese una palabra de 5 letras: ";
+    $palabraDeCincoLetras = trim(fgets(STDIN));
+    $cantLetras = strlen($palabraDeCincoLetras);
+    while(!esPalabra($palabraDeCincoLetras) || $cantLetras != 5) {
+        echo "\n";
+        echo "Inténtelo nuevamente.\n";
+        echo "Ingrese una palabra de 5 letras: ";
+        $palabraDeCincoLetras = trim(fgets(STDIN));
+        $cantLetras = strlen($palabraDeCincoLetras);
+    }
+    $palabraDeCincoLetras = strtoupper($palabraDeCincoLetras);
+    return $palabraDeCincoLetras;
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
