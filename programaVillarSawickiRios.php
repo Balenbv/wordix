@@ -194,12 +194,13 @@ $opcion = trim(fgets(STDIN));
 
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
-            $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);
+            
             $partidaRepetida = false;
              //Checkea si el array del jugador está creado, si no lo está, lo crea.
              if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
                 $partidasjugadoresGenerales[$nombreDelJugador] = [];
-            }    
+            } 
+            $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);   
             //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
             do {
                 if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
