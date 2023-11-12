@@ -336,10 +336,11 @@ $opcion = trim(fgets(STDIN));
             
             //Solicita la nueva palabra que se agregará.
             $palabraAAgregar = solicitarPalabraDeCincoLetras();
+            
 
             //Agrega la palabra a la coleccón.
             $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
-
+            $cantLetrasDePalabraOculta = count($palabrasDisponibles);
             echo "\nLa palabra fue agregada de manera exitosa.\n";
 
             break;
