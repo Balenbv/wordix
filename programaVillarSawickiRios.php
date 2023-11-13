@@ -33,8 +33,7 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
  * 
  * @return array
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras() {
     // array $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
@@ -42,9 +41,68 @@ function cargarColeccionPalabras()
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "LAPIZ", "SILLA", "COCHE", "RADIO", "BOTON"
     ];
-
     return ($coleccionPalabras);
 }
+
+
+/**
+ * La función inicializa una estructura de datos con partidas jugadas.
+ * 
+ * @return array
+ * 
+ */
+function cargarColeccionPartidas() {
+    // array $coleccionPartidas
+    $coleccionPartidas = [
+        ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], 
+        ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    
+        ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  
+        ["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       
+        ["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     
+        ["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       
+        ["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   
+        ["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                    
+        ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   
+        ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                        
+    ];
+    return $coleccionPartidas;
+}
+
+/**
+ * La función inicializa una estructura de datos con los resúmenes de jugadores.
+ * 
+ * @return array
+ */
+function cargarResumenesJugadores() {
+    // array $resumenesJugadores
+    $resumenesJugadores = [
+        ["jugador" => "majo" , "partidas" => 1 , "puntajeTotal" => 0 , "victorias" => 0 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
+
+        ["jugador" => "rudolf" , "partidas" => 1 , "puntajeTotal" => 14 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
+
+        ["jugador" => "pink2000" , "partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 1],
+
+        ["jugador" => "cau" , "partidas" => 1 , "puntajeTotal" => 11 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
+
+        ["jugador" => "mauro" , "partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
+
+        ["jugador" => "gabi" , "partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 1 , "intento5" => 0 , "intento6" => 0],
+
+        ["jugador" => "valentin" , "partidas" => 3 , "puntajeTotal" => 19 , "victorias" => 2 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
+
+        ["jugador" => "calemchu" , "partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
+        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
+    ];
+    return $resumenesJugadores;
+}
+
 
 /**
  * Función 4:
@@ -119,21 +177,14 @@ function miComparacion($array1, $array2){
 
 //Inicialización de variables:
 $palabrasDisponibles = cargarColeccionPalabras();
+$coleccionPartidas = cargarColeccionPartidas();
+$jugadores = cargarResumenesJugadores();
+
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
-$coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
-["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    //2
-["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  //3
-["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
-["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
-["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
-["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   //7  
-["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                    //8
-["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
-["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                        //10
-];
+
 
 //Proceso:
 
