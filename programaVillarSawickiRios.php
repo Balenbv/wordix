@@ -46,12 +46,13 @@ function cargarColeccionPalabras() {
 
 
 /**
+ * Función 2
  * La función inicializa una estructura de datos con partidas jugadas.
  * 
  * @return array
  * 
  */
-function cargarColeccionPartidas() {
+function cargarPartidas() {
     // array $coleccionPartidas
     $coleccionPartidas = [
         ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], 
@@ -177,7 +178,7 @@ function miComparacion($array1, $array2){
 
 //Inicialización de variables:
 $palabrasDisponibles = cargarColeccionPalabras();
-$coleccionPartidas = cargarColeccionPartidas();
+$coleccionPartidas = cargarPartidas();
 $jugadores = cargarResumenesJugadores();
 
 $cantPalabrasDisponibles = count($palabrasDisponibles);
