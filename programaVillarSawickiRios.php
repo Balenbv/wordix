@@ -180,7 +180,7 @@ $palabrasDisponibles = cargarColeccionPalabras();
 $coleccionPartidas = cargarColeccionPartidas();
 $jugadores = cargarResumenesJugadores();
 
-$cantLetrasDePalabraOculta = count($palabrasDisponibles);
+$cantPalabrasDisponibles = count($palabrasDisponibles);
 $partidaJugada = [];
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
@@ -210,7 +210,7 @@ $opcion = trim(fgets(STDIN));
             $partidaRepetida = false;
             
             //Checkea que el número ingresado este dentro del rango.
-            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
+            if ($numeroElegido >= 0 && $numeroElegido < $cantPalabrasDisponibles) {
 
                 //Checkea si el array del jugador está creado, si no lo está, lo crea.
                 if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
@@ -235,7 +235,7 @@ $opcion = trim(fgets(STDIN));
                     echo "El número de partida ya ha sido jugado por " . $nombreDelJugador . ", por favor elija otro.\n";
                 }
             } else {
-                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
+                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantPalabrasDisponibles . "\n\n";
             }  
 
             break;
@@ -255,10 +255,10 @@ $opcion = trim(fgets(STDIN));
             $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);   
             //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
             do {
-                if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
+                if ($numeroDePartidas == $cantPalabrasDisponibles) {
                     break;
                 }
-                $numeroAleatorio = rand(0, ($cantLetrasDePalabraOculta -1));
+                $numeroAleatorio = rand(0, ($cantPalabrasDisponibles -1));
                 $partidaRepetida = false;
                 foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
                     if ($numero == $numeroAleatorio) {
@@ -268,7 +268,7 @@ $opcion = trim(fgets(STDIN));
                 }
             } while ($partidaRepetida);
             //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
-            if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
+            if ($numeroDePartidas == $cantPalabrasDisponibles) {
                 echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
                 break;
             }
@@ -393,7 +393,7 @@ $opcion = trim(fgets(STDIN));
 
             //Agrega la palabra a la coleccón.
             $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
-            $cantLetrasDePalabraOculta = count($palabrasDisponibles);
+            $cantPalabrasDisponibles = count($palabrasDisponibles);
             echo "\nLa palabra fue agregada de manera exitosa.\n";
 
             break;
