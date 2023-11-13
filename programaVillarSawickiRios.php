@@ -77,28 +77,28 @@ function cargarPartidas() {
 function cargarResumenesJugadores() {
     // array $resumenesJugadores
     $resumenesJugadores = [
-        ["jugador" => "majo" , "partidas" => 1 , "puntajeTotal" => 0 , "victorias" => 0 , 
+        "majo" => ["partidas" => 1 , "puntajeTotal" => 0 , "victorias" => 0 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
 
-        ["jugador" => "rudolf" , "partidas" => 1 , "puntajeTotal" => 14 , "victorias" => 1 , 
+        "rudolf" => ["partidas" => 1 , "puntajeTotal" => 14 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
 
-        ["jugador" => "pink2000" , "partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
+        "pink2000" => ["partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 1],
 
-        ["jugador" => "cau" , "partidas" => 1 , "puntajeTotal" => 11 , "victorias" => 1 , 
+        "cau" => ["partidas" => 1 , "puntajeTotal" => 11 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
 
-        ["jugador" => "mauro" , "partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
+        "mauro" => ["partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
 
-        ["jugador" => "gabi" , "partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
+        "gabi" => ["partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 1 , "intento5" => 0 , "intento6" => 0],
 
-        ["jugador" => "valentin" , "partidas" => 3 , "puntajeTotal" => 19 , "victorias" => 2 , 
+        "valentin" => ["partidas" => 3 , "puntajeTotal" => 19 , "victorias" => 2 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
 
-        ["jugador" => "calemchu" , "partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
+        "calemchu" => ["partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
         "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
     ];
     return $resumenesJugadores;
