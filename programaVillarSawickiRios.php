@@ -77,15 +77,15 @@ function cargarPartidas() {
 function cargarResumenJugador() {
     // array $resumenJugador
     $resumenJugador = [
-        "jugador" => "valentin",
-        "partidas" => 3,
-        "puntajeTotal" => 19,
-        "victorias" => 2,
+        "jugador" => "",
+        "partidas" => 0,
+        "puntajeTotal" => 0,
+        "victorias" => 0,
         "intento1" => 0,
         "intento2" => 0,
-        "intento3" => 1,
+        "intento3" => 0,
         "intento4" => 0,
-        "intento5" => 1,        
+        "intento5" => 0,        
         "intento6" => 0,        
     ];
     return $resumenJugador;
