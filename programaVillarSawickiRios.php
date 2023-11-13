@@ -27,7 +27,7 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**
  * Obtiene una colección de palabrasDisponibles
  * 
- * Función 1:
+ * Función 1
  * La función inicializa una estructura de datos con ejemplos de palabras de cinco letras en mayúsculas y
  * retorna esta misma colección.
  * 
@@ -106,7 +106,7 @@ function cargarResumenesJugadores() {
 
 
 /**
- * Función 4:
+ * Función 4
  * La función le pide al usuario una plabra de 5 letras y, luego de verificar que lo sea, la retorna en mayusculas.
  * 
  * @return string
@@ -145,7 +145,7 @@ function miComparacion($array1, $array2){
 }
 
 /**
- * Función 7:
+ * Función 7
  * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
  * 
  * @param array $coleccionPalabrasAAgregar

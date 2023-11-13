@@ -27,7 +27,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- * Función 5:
+ * Función 5
  *  Esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max y
  * también determina que sea un numero entero.
  * @param int $min, $max
