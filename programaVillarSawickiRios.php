@@ -70,38 +70,25 @@ function cargarPartidas() {
 }
 
 /**
- * La función inicializa una estructura de datos con los resúmenes de jugadores.
+ * La función inicializa una estructura de datos asociativa con el resumen de un jugador.
  * 
  * @return array
  */
-function cargarResumenesJugadores() {
-    // array $resumenesJugadores
-    $resumenesJugadores = [
-        "majo" => ["partidas" => 1 , "puntajeTotal" => 0 , "victorias" => 0 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
-
-        "rudolf" => ["partidas" => 1 , "puntajeTotal" => 14 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
-
-        "pink2000" => ["partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 1],
-
-        "cau" => ["partidas" => 1 , "puntajeTotal" => 11 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
-
-        "mauro" => ["partidas" => 1 , "puntajeTotal" => 10 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 1 , "intento3" => 0 , "intento4" => 0 , "intento5" => 0 , "intento6" => 0],
-
-        "gabi" => ["partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 1 , "intento5" => 0 , "intento6" => 0],
-
-        "valentin" => ["partidas" => 3 , "puntajeTotal" => 19 , "victorias" => 2 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 1 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
-
-        "calemchu" => ["partidas" => 1 , "puntajeTotal" => 8 , "victorias" => 1 , 
-        "intento1" => 0 , "intento2" => 0 , "intento3" => 0 , "intento4" => 0 , "intento5" => 1 , "intento6" => 0],
+function cargarResumenJugador() {
+    // array $resumenJugador
+    $resumenJugador = [
+        "jugador" => "valentin",
+        "partidas" => 3,
+        "puntajeTotal" => 19,
+        "victorias" => 2,
+        "intento1" => 0,
+        "intento2" => 0,
+        "intento3" => 1,
+        "intento4" => 0,
+        "intento5" => 1,        
+        "intento6" => 0,        
     ];
-    return $resumenesJugadores;
+    return $resumenJugador;
 }
 
 
@@ -179,7 +166,7 @@ function miComparacion($array1, $array2){
 //Inicialización de variables:
 $palabrasDisponibles = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
-$jugadores = cargarResumenesJugadores();
+$jugador = cargarResumenJugador();
 
 $cantPalabrasDisponibles = count($palabrasDisponibles);
 $partidaJugada = [];
