@@ -148,6 +148,27 @@ function miComparacion($array1, $array2){
     return $coleccionPalabrasAAgregar;
  }
 
+/**
+ * Función 10
+ * La función solicita al usuario el nombre de un jugador y lo retorna en minúsculas. Verifica que comience con una letra.
+ */
+function solicitarJugador() {
+    // string $jugador
+    echo "\nIngrese el nombre del jugador: ";
+    $jugador = trim(fgets(STDIN));
+    if (ctype_alpha($jugador[0])) {
+        $jugador = strtolower($jugador);
+    }
+    while (!ctype_alpha($jugador[0])) {
+        echo "\nEl nombre debe comenzar con una letra.\nIngrese el nombre del jugador: ";
+        $jugador = trim(fgets(STDIN));
+        if (ctype_alpha($jugador[0])) {
+            $jugador = strtolower($jugador);
+        }
+    }
+    return $jugador;
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
