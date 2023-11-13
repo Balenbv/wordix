@@ -22,7 +22,6 @@ function miComparacion($arrayComparativo1, $arrayComparativo2){
             return $comparacionPalabraJugada;
         }
 }
-
 uasort($coleccionPartidas, 'miComparacion');
 
 print_r($coleccionPartidas);

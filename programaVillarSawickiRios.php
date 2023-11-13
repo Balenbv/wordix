@@ -35,6 +35,7 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
  */
 function cargarColeccionPalabras()
 {
+    // array $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -128,15 +129,15 @@ $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intento
 ["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
 ["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
 ["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
-["palabraWordix"=> "SILLA" , "jugador" => "calemchu", "intentos"=> 7, "puntaje" => 0],                   //7  
-["palabraWordix"=> "MELON" , "jugador" => "puchito", "intentos"=> 5, "puntaje" => 9],                    //8
+["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   //7  
+["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                    //8
 ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
-["palabraWordix"=> "TINTO" , "jugador" => "cau", "intentos"=> 3, "puntaje" => 9],                        //10
+["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                        //10
 ];
 
 //Proceso:
 
-//print_r($partida);                    //siempre fueron comentario, hay que crear una funcion con el nombre imprimirResultado :p
+//print_r($partida);                    
 //imprimirResultado($partida); 
 
 
@@ -295,25 +296,26 @@ $opcion = trim(fgets(STDIN));
                         if($estadiscticasJugador["intentos"] == 1){
                             $contIntentos1++;
                         }
-                        if ($estadiscticasJugador["intentos"] == 2){
+                        else if ($estadiscticasJugador["intentos"] == 2){
                             $contIntentos2++;
                         }
-                        if ($estadiscticasJugador["intentos"] == 3){
+                        else if ($estadiscticasJugador["intentos"] == 3){
                             $contIntentos3++;
                         }
-                        if($estadiscticasJugador["intentos"] == 4){
+                        else if($estadiscticasJugador["intentos"] == 4){
                             $contIntentos4++;
                         }
-                        if($estadiscticasJugador["intentos"] == 5){
+                        else if($estadiscticasJugador["intentos"] == 5){
                             $contIntentos5++;
                         }
-                        if($estadiscticasJugador["intentos"] == 6){
+                        else if($estadiscticasJugador["intentos"] == 6){
                             $contIntentos6++;
                         }
                     }
                 }
                 $cantPartidasGanadasJugador = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
-                $porcentajeDeVictoria = ($partidasQueJugo / $cantPartidasGanadasJugador)*100;
+                echo "\n".$partidasQueJugo. "     ". $cantPartidasGanadasJugador."\n";
+                $porcentajeDeVictoria = ($cantPartidasGanadasJugador / $partidasQueJugo)*100;
 
                 echo "\nJugador: ".$nombreDelJugador."\nPartidas: ".$partidasQueJugo."\nPuntaje Total: ".$puntajeTotalJugador."\nVictorias: ". $porcentajeDeVictoria."%\nAdivinadas: ";
                 echo "\nIntento 1: ".$contIntentos1.
@@ -350,6 +352,3 @@ $opcion = trim(fgets(STDIN));
     }
     
 } while ($opcion != 8);
-
-
-
