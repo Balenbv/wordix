@@ -93,7 +93,7 @@ function cargarColeccionPalabras()
  * una funcion que donde se guardan las partidas jugadas.
  * 
  */
-function cargarPartidas($partidaFinalizada){
+function cargarPartidas(){
     $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], 
     ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    
     ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  
@@ -105,8 +105,7 @@ function cargarPartidas($partidaFinalizada){
     ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   
     ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   
     ];
-
-    array_push($coleccionPartidas, $partidaFinalizada);
+    
     return $coleccionPartidas;
 }
 
@@ -408,6 +407,7 @@ switch ($opcion) {
             break;
         case 4: 
 
+          $extraerPartidas = cargarPartidas();
           echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
 
