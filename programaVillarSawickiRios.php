@@ -279,6 +279,114 @@ function solicitarJugador() {
 }
 
 
+
+
+/**
+ * Función case 1
+ * Pide un numero y checkea que no haya sido jugado.
+ * 
+ * @param array $partidasjugadoresGenerales, $cantLetrasDePalabraOculta
+ * @param string $nombre
+ * @return int $numeroElegido
+ * 
+ */
+function checkNumeroJugar($nombre, &$partidasjugadoresGenerales, $cantLetrasDePalabraOculta) {
+    // boolean $partidaRepetida. int $numeroElegido
+    $partidaRepetida = false;
+
+    do {
+        // Checkea si el array del jugador está creado, si no lo está, lo crea.
+        if (!isset($partidasjugadoresGenerales[$nombre])) {
+            $partidasjugadoresGenerales[$nombre] = [];
+        }
+
+        $numeroElegido = solicitarNumeroEntre($cantLetrasDePalabraOculta);
+        $partidaRepetida = false;
+
+        // Revisa en todo el array si la palabra coincide con el número elegido.
+        foreach ($partidasjugadoresGenerales[$nombre] as $numero) {
+            if ($numero == $numeroElegido) {
+                $partidaRepetida = true;
+                echo "El número de partida ya ha sido jugado por " . $nombre . ", por favor elija otro.\n";
+                break; // Se encontró una coincidencia, se sale del bucle
+            }
+        }
+    } while ($partidaRepetida);
+
+    // Agrega el número jugado al array de partidas del jugador
+    $partidasjugadoresGenerales[$nombre][] = $numeroElegido;
+
+    return $numeroElegido;
+}
+
+
+
+
+/**
+ * Función case 1 & 2
+ * La función checkea si un jugador ya jugó todas las palabras posibles.
+ * 
+ * @param array $partidasjugadoresGenerales, $cantLetrasDePalabraOculta
+ * @param string $nombre
+ * @return boolean $agoto
+ * 
+ */
+function agotoPalabras($nombre,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta) {
+    // boolean $agoto, int $numeroDePartidas
+    $agoto = false;
+
+    // Checkea si el array del jugador está creado, si no lo está, lo crea.
+    if (!isset($partidasjugadoresGenerales[$nombre])) {
+        $partidasjugadoresGenerales[$nombre] = [];
+    }
+
+    //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
+    $numeroDePartidas = count($partidasjugadoresGenerales[$nombre]);
+    if ($numeroDePartidas  == $cantLetrasDePalabraOculta) {
+        echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
+        $agoto = true;
+    }
+    return $agoto;
+}
+
+/**
+ * Función case 2
+ * La función checkea si un jugador ya jugó todas las palabras posibles.
+ * 
+ * @param array $partidasjugadoresGenerales, $cantLetrasDePalabraOculta
+ * @param string $nombre
+ * @return boolean $numeroAleatorio
+ * 
+ */
+function randomNojugado($nombre,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta) {
+    // boolean $partidaRepetida, int $numeroDePartidas $numeroAleatorio
+    $partidaRepetida = false;
+    //Checkea si el array del jugador está creado, si no lo está, lo crea.
+    if (!isset($partidasjugadoresGenerales[$nombre])) {
+       $partidasjugadoresGenerales[$nombre] = [];
+   } 
+   $numeroDePartidas = count($partidasjugadoresGenerales[$nombre]);   
+   //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
+   do {
+       if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
+           break;
+       }
+       $numeroAleatorio = rand(0, ($cantLetrasDePalabraOculta -1));
+       $partidaRepetida = false;
+       foreach ($partidasjugadoresGenerales[$nombre] as $numero) {
+           if ($numero == $numeroAleatorio) {
+               $partidaRepetida = true;
+               break;
+           }
+       }
+   } while ($partidaRepetida);
+
+    return $numeroAleatorio;
+}
+
+
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -299,85 +407,50 @@ $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 $estadisticasJugador =[];
 //Partidas pre-cargadas
-$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
+$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
 
 $opcion = opcionElegida();
 
 switch ($opcion) {
-        case 1:          
+        case 1:
             //Jugar al wordix con una palabra elegida
-            //(Explicado a detalle en asana)
+            $extraerPartidas = cargarPartidas();
+         
+            $nombreDelJugador = solicitarJugador();
 
-            echo "Ingrese su nombre\n";
-            $nombreDelJugador = trim(fgets(STDIN));
-            echo "Ingrese el número de palabra que desea jugar:\n";
-            $numeroElegido = trim(fgets(STDIN));
-            $numeroElegido -= 1;          
-            $partidaRepetida = false;
+            //Checkea que el jugador no haya agotado las palabras.
+            $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta);
+            if($checkAgoto){
+                break;
+            }
+
+            //Checkea que el número se ingrese de manera correcta y no haya sido jugado por el jugador.
+            $checkNumero = checkNumeroJugar($nombreDelJugador,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta);
+
+             //Se juega la partida y se almacenan datos en los arrays. 
+             $palabraSecreta = $palabrasDisponibles[$checkNumero];
+             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
+             array_push($extraerPartidas, $partidaJugada);
+             array_push($partidasjugadoresGenerales[$nombreDelJugador], $checkNumero);
             
-            //Checkea que el número ingresado este dentro del rango.
-            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
-
-                //Checkea si el array del jugador está creado, si no lo está, lo crea.
-                if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
-                    $partidasjugadoresGenerales[$nombreDelJugador] = [];
-                }
-
-                //Revisa en todo el array si la palabra coincide con el número elejido.         
-                foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
-                    if ($numero == $numeroElegido) {
-                        $partidaRepetida = true;
-                        break;
-                    }
-                }
-                
-                //Si el número no coincide se juega la partida, si coincide sale un mensaje de error. 
-                if (!$partidaRepetida) {
-                    $palabraSecreta = $palabrasDisponibles[$numeroElegido];
-                    $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-                    cargarPartidas($partidaJugada);
-                    array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroElegido);
-                } else {
-                    echo "El número de partida ya ha sido jugado por " . $nombreDelJugador . ", por favor elija otro.\n";
-                }
-            } else {
-                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
-            }  
 
             break;
 
         case 2: 
             //Jugar al wordix con una palabra aleatoria
-            //(Explicado a detalle en asana)
 
-            echo "Ingrese su nombre\n";
-            $nombreDelJugador = trim(fgets(STDIN));
-            
-            $partidaRepetida = false;
-             //Checkea si el array del jugador está creado, si no lo está, lo crea.
-             if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
-                $partidasjugadoresGenerales[$nombreDelJugador] = [];
-            } 
-            $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);   
-            //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
-            do {
-                if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
-                    break;
-                }
-                $numeroAleatorio = rand(0, ($cantLetrasDePalabraOculta -1));
-                $partidaRepetida = false;
-                foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
-                    if ($numero == $numeroAleatorio) {
-                        $partidaRepetida = true;
-                        break;
-                    }
-                }
-            } while ($partidaRepetida);
-            //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
-            if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
-                echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
+            $nombreDelJugador = solicitarJugador();
+
+            //Checkea que el jugador no haya agotado las palabras.
+            $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta);
+            if($checkAgoto){
                 break;
             }
+
+            //Consigue una palabra no jugada anteriormente.
+            $numeroAleatorio = randomNojugado($nombreDelJugador,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta);        
+            
+            //Se juega la partida y se almacenan datos en los arrays. 
             $palabraSecreta = $palabrasDisponibles[$numeroAleatorio];
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
             array_push($coleccionPartidas, $partidaJugada);
