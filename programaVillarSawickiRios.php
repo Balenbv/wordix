@@ -89,6 +89,34 @@ function cargarColeccionPalabras()
 }
 
 /**
+ * Funcion 2
+ * una funcion que donde se guardan las partidas jugadas.
+ * 
+ */
+function cargarPartidas($partidaFinalizada){
+    $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], 
+    ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    
+    ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  
+    ["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       
+    ["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     
+    ["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       
+    ["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   
+    ["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                   
+    ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   
+    ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   
+    ];
+
+    array_push($coleccionPartidas, $partidaFinalizada);
+    return $coleccionPartidas;
+}
+
+
+
+
+
+
+
+/**
  * Función 4:
  * La función le pide al usuario una plabra de 5 letras y, luego de verificar que lo sea, la retorna en mayusculas.
  * 
@@ -226,6 +254,28 @@ function miComparacion($array1, $array2){
  }
 
 
+ /**
+ * Función 10
+ * La función solicita al usuario el nombre de un jugador y lo retorna en minúsculas. Verifica que comience con una letra.
+ */
+function solicitarJugador() {
+    // string $jugador
+    echo "\nIngrese el nombre del jugador: ";
+    $jugador = trim(fgets(STDIN));
+    if (ctype_alpha($jugador[0])) {
+        $jugador = strtolower($jugador);
+    }
+    while (!ctype_alpha($jugador[0])) {
+        echo "\nEl nombre debe comenzar con una letra.\nIngrese el nombre del jugador: ";
+        $jugador = trim(fgets(STDIN));
+        if (ctype_alpha($jugador[0])) {
+            $jugador = strtolower($jugador);
+        }
+    }
+    return $jugador;
+}
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -247,17 +297,6 @@ $partidaJugada = [];
 $estadisticasJugador =[];
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
-$coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
-["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    //2
-["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  //3
-["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
-["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
-["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
-["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   //7  
-["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                   //8
-["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
-["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   //10
-];
 
 $opcion = opcionElegida();
 
@@ -293,7 +332,7 @@ switch ($opcion) {
                 if (!$partidaRepetida) {
                     $palabraSecreta = $palabrasDisponibles[$numeroElegido];
                     $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-                    array_push($coleccionPartidas, $partidaJugada);
+                    cargarPartidas($partidaJugada);
                     array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroElegido);
                 } else {
                     echo "El número de partida ya ha sido jugado por " . $nombreDelJugador . ", por favor elija otro.\n";
@@ -401,7 +440,7 @@ switch ($opcion) {
 
             break;
 
-        case 6: 
+        case 6:
             uasort($coleccionPartidas, 'miComparacion');
 
             print_r($coleccionPartidas);
