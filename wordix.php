@@ -30,21 +30,24 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
  * Función 5
  *  Esta funcion determina si un numero ingresado por el usuario es un numero dentro del rango min y max y
  * también determina que sea un numero entero.
- * @param int $min, $max
+ * @param int $max
  * @return int
  */
-function solicitarNumeroEntre($min, $max)
+function solicitarNumeroEntre($max)
 {
-    //int $numero
-    echo "\nIngrese un número entre " . $min . " y " . $max . ": ";
+    //int $numero, $min
+    $min = 0;
+    echo "\nIngrese un número entre 1 y " . $max . ": ";
     $numero = trim(fgets(STDIN));
+    $numero -= 1;
 
     if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
-    while (!(is_numeric($numero) && (($numero == (int)$numero) && ($numero >= $min && $numero <= $max)))) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+    while (!(is_numeric($numero) && (($numero == (int)$numero) && ($numero >= $min && $numero <= ($max - 1))))) {
+        echo "Debe ingresar un número entre 1 y " . $max . ": ";
         $numero = trim(fgets(STDIN));
+        $numero -= 1;
         if (is_numeric($numero)) {
             $numero  = $numero * 1;
         }
