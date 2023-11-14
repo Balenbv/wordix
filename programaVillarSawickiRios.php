@@ -23,33 +23,6 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
-function opcionElegida(){
-    $TotalOpciones = [
-        "Jugar al Wordix con una palabra elegida",
-        "Jugar al Wordix con una palabra aleatoria",
-        "Mostrar una partida",
-        "Mostrar la primera partida ganadora",
-        "Mostrar resumen de Jugador",
-        "Mostrar listado de partidas ordenadas por jugador y por palabra",
-        "Agregar una palabra de 5 letras a Wordix",
-        "Salir"
-    ];
-    echo "menu de opciones:"."\n";
-    foreach($TotalOpciones as $key => $opcionParticular){
-        echo ($key + 1). ") " . $opcionParticular."\n";
-
-    }
-    do{
-        echo "ingrese una opcion(nro):";
-        $eleccion = trim(fgets(STDIN));
-        if($eleccion < 1 || $eleccion > count($TotalOpciones)){
-            echo "Opción no válida. pruebe otra opcion"."\n";
-        }
-    }while($eleccion < 1 || $eleccion > count($TotalOpciones));
-
-    return $eleccion;
-}
-
 
 function elNombeExiste($nombresCargados, $nuevoNombre){
 
@@ -89,7 +62,7 @@ function cargarColeccionPalabras()
 }
 
 /**
- * Funcion 2
+ * Funcion 2:
  * una funcion que donde se guardan las partidas jugadas.
  * 
  */
@@ -109,7 +82,38 @@ function cargarPartidas(){
     return $coleccionPartidas;
 }
 
+/**
+ * funcion 3:
+ * muestra un menu de opciones y evalua que el valor este dentro de un rango
+ * @return int Es un numero valido de opcion
+ */
 
+function opcionElegida(){
+    $TotalOpciones = [
+        "Jugar al Wordix con una palabra elegida",
+        "Jugar al Wordix con una palabra aleatoria",
+        "Mostrar una partida",
+        "Mostrar la primera partida ganadora",
+        "Mostrar resumen de Jugador",
+        "Mostrar listado de partidas ordenadas por jugador y por palabra",
+        "Agregar una palabra de 5 letras a Wordix",
+        "Salir"
+    ];
+    echo "menu de opciones:"."\n";
+    foreach($TotalOpciones as $key => $opcionParticular){
+        echo ($key + 1). ") " . $opcionParticular."\n";
+
+    }
+    do{
+        echo "ingrese una opcion(nro):";
+        $eleccion = trim(fgets(STDIN));
+        if($eleccion < 1 || $eleccion > count($TotalOpciones)){
+            echo "Opción no válida. pruebe otra opcion"."\n";
+        }
+    }while($eleccion < 1 || $eleccion > count($TotalOpciones));
+
+    return $eleccion;
+}
 
 
 
