@@ -23,6 +23,33 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+function opcionElegida(){
+    $TotalOpciones = [
+        "Jugar al Wordix con una palabra elegida",
+        "Jugar al Wordix con una palabra aleatoria",
+        "Mostrar una partida",
+        "Mostrar la primera partida ganadora",
+        "Mostrar resumen de Jugador",
+        "Mostrar listado de partidas ordenadas por jugador y por palabra",
+        "Agregar una palabra de 5 letras a Wordix",
+        "Salir"
+    ];
+    echo "menu de opciones:"."\n";
+    foreach($TotalOpciones as $key => $opcionParticular){
+        echo ($key + 1). ") " . $opcionParticular."\n";
+
+    }
+    do{
+        echo "ingrese una opcion(nro):";
+        $eleccion = trim(fgets(STDIN));
+        if($eleccion < 1 || $eleccion > count($TotalOpciones)){
+            echo "Opción no válida. pruebe otra opcion"."\n";
+        }
+    }while($eleccion < 1 || $eleccion > count($TotalOpciones));
+
+    return $eleccion;
+}
+
 
 function elNombeExiste($nombresCargados, $nuevoNombre){
 
@@ -232,18 +259,9 @@ $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intento
 ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   //10
 ];
 
-//Proceso:
+$opcion = opcionElegida();
 
-//print_r($partida);                    
-//imprimirResultado($partida); 
-
-
-do {
-echo "\nSeleccione una opción: \n";
-echo "1) Jugar al wordix con una palabra elegida\n2) Jugar al wordix con una palabra aleatoria\n3) Mostrar una partida\n4) Mostrar la primer partida ganadora\n5) Mostrar resumen de Jugador\n6) Mostrar listado de partidas ordenadas por jugador y por palabra\n7) Agregar una palabra de 5 letras a Wordix\n8) salir\n";
-$opcion = trim(fgets(STDIN));
-
-    switch ($opcion) {
+switch ($opcion) {
         case 1:          
             //Jugar al wordix con una palabra elegida
             //(Explicado a detalle en asana)
@@ -382,11 +400,13 @@ $opcion = trim(fgets(STDIN));
 
 
             break;
+
         case 6: 
             uasort($coleccionPartidas, 'miComparacion');
 
             print_r($coleccionPartidas);
             break;
+
         case 7: 
             //Agregar una palabra de 5 letras a Wordix utilizando las funciones 4 y 7.
             
@@ -398,11 +418,9 @@ $opcion = trim(fgets(STDIN));
             $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
             $cantLetrasDePalabraOculta = count($palabrasDisponibles);
             echo "\nLa palabra fue agregada de manera exitosa.\n";
-
             break;
+
         case 8: 
             //Salir: Sale del programa.
             echo "Gracias por jugar Wordix, vuelva pronto!";    
-    }
-    
-} while ($opcion != 8);
+}
