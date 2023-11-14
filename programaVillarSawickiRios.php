@@ -438,6 +438,7 @@ switch ($opcion) {
 
         case 2: 
             //Jugar al wordix con una palabra aleatoria
+            $extraerPartidas = cargarPartidas();
 
             $nombreDelJugador = solicitarJugador();
 
@@ -453,7 +454,7 @@ switch ($opcion) {
             //Se juega la partida y se almacenan datos en los arrays. 
             $palabraSecreta = $palabrasDisponibles[$numeroAleatorio];
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-            array_push($coleccionPartidas, $partidaJugada);
+            array_push($extraerPartidas, $partidaJugada);
             array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroAleatorio);
             break;
 
