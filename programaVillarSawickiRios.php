@@ -28,12 +28,12 @@ function elNombeExiste($nombresCargados, $nuevoNombre){
 
     foreach($nombresCargados as $nombre) {
         if ($nombre["jugador"] == $nuevoNombre) {
-            echo "\nel jugador ya esta registrado\n";
-            return false;
+            
+            return true;
         }
     }
-
-    return true;
+    echo "\nel jugador no esta registrado\n";
+    return false;
 }
 
 
@@ -83,10 +83,45 @@ function cargarColeccionPalabras()
     }
     $palabraDeCincoLetras = strtoupper($palabraDeCincoLetras);
     return $palabraDeCincoLetras;
+
+    
+}
+/**
+ * funcion case 4
+ * 
+ */
+function primeraVictoria($partidas,$jugador){
+$victoria = false;
+$numPartida = 1;
+$stopCiclos = 1;
+    foreach($partidas as $partida){
+        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0 && $stopCiclos == 1){
+            echo  "\n**************************************"."\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]. "\n**************************************\n";
+            $victoria = true;
+            $stopCiclos++;
+            break;
+        }
+        $numPartida++;
+      }
+
+      if (!$victoria) {
+        echo "\n".$jugador." Nunca gano una partida.\n";
+}
+
 }
 
 
+
+
+
+
+/**
+ * funcion case 5
+ * 
+ */
+
 function recopilarEstadisticasJugador($partidas, $jugador){
+    $resumenJugador = [];
     $partidasQueJugo = 0;
     $puntajeTotalJugador = 0;
     $contIntentos1 = 0;
@@ -98,51 +133,32 @@ function recopilarEstadisticasJugador($partidas, $jugador){
     $porcentajeDeVictoria = 0;
         if (elNombeExiste($partidas, $jugador)){
 
+            foreach ($partidas as $estadisticasJugador){
+                if ($estadisticasJugador["jugador"] == $jugador ) {
+                    $partidasQueJugo++;
+                    $puntajeTotalJugador += $estadisticasJugador["puntaje"];
 
-        foreach ($partidas as $estadiscticasJugador){
-            if ($estadiscticasJugador["jugador"] == $jugador ) {
-                $partidasQueJugo++;
-                $puntajeTotalJugador += $estadiscticasJugador["puntaje"];
+                    switch($estadisticasJugador["intentos"]){
+                        case 1 : $contIntentos1++; break;
+                        case 2 : $contIntentos2++; break;
+                        case 3 : $contIntentos3++; break;
+                        case 4 : $contIntentos4++; break;
+                        case 5 : $contIntentos5++; break;
+                        case 6 : $contIntentos6++; break;
+                        default : break;
+                    }
 
-                if($estadiscticasJugador["intentos"] == 1){
-                    $contIntentos1++;
-                }
-                else if ($estadiscticasJugador["intentos"] == 2){
-                    $contIntentos2++;
-                }
-                else if ($estadiscticasJugador["intentos"] == 3){
-                    $contIntentos3++;
-                }
-                else if($estadiscticasJugador["intentos"] == 4){
-                    $contIntentos4++;
-                }
-                else if($estadiscticasJugador["intentos"] == 5){
-                    $contIntentos5++;
-                }
-                else if($estadiscticasJugador["intentos"] == 6){
-                    $contIntentos6++;
                 }
             }
-        }
-        $cantVictorias = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
-        $porcentajeDeVictoria = ($cantVictorias / $partidasQueJugo)*100;
+            $cantVictorias = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
 
+            $resumenJugador = ["jugador" => $jugador, "partidas" => $partidasQueJugo, "puntajeTotal" => $puntajeTotalJugador, "victorias" => $cantVictorias, "intento1" => $contIntentos1, "intento2" => $contIntentos2, "intento3" => $contIntentos3, "intento4" => $contIntentos4, "intento5" => $contIntentos5, "intento6" =>$contIntentos6];
         
-
-
+    }
+ 
+    return $resumenJugador;
 
     }
-      
-
-
-    }
-
-
-
-
-
-
-
 
 
 
@@ -201,7 +217,7 @@ function miComparacion($array1, $array2){
 $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
-$resumenJugador =[];
+$estadisticasJugador =[];
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
 $coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
@@ -334,35 +350,35 @@ $opcion = trim(fgets(STDIN));
 
             break;
         case 4: 
-            $victoria = false;
-            $numPartida = 1;
-            $stopCiclos = 1;
+
           echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
 
-          foreach($coleccionPartidas as $partida){
-            if ($partida["jugador"] == $nombreDelJugador && $partida["puntaje"] != 0 && $stopCiclos == 1){
-                echo "\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]."\n";
-                $victoria = true;
-                $stopCiclos++;
-                break;
-            }
-            $numPartida++;
-          }
-
-          if (!$victoria) {
-            echo "\n".$nombreDelJugador." Nunca gano una partida.\n";
-    }
+          primeraVictoria($coleccionPartidas, $nombreDelJugador);
 
             break;
 
         case 5:
+
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
+            $estadisticasJugador = recopilarEstadisticasJugador($coleccionPartidas,$nombreDelJugador);
 
- 
 
-
+            echo "\n**************************************\n";
+            echo "Jugador: ".$estadisticasJugador["jugador"];
+            echo "\nPartidas: ". $estadisticasJugador["partidas"];
+            echo "\nPuntaje total: ". $estadisticasJugador["puntajeTotal"];
+            echo "\nVictorias: ". $estadisticasJugador["victorias"];
+            echo "\nPorcentaje Victorias: " . floor(($estadisticasJugador["victorias"] / $estadisticasJugador["partidas"]) * 100)."%";
+            echo "\nadivinadas".
+            "\n    intento 1: ". $estadisticasJugador["intento1"].
+            "\n    intento 2: ". $estadisticasJugador["intento2"].
+            "\n    intento 3: ". $estadisticasJugador["intento3"].
+            "\n    intento 4: ". $estadisticasJugador["intento4"].
+            "\n    intento 5: ". $estadisticasJugador["intento5"].
+            "\n    intento 6: ". $estadisticasJugador["intento6"];
+            echo "\n**************************************\n";
 
 
             break;
