@@ -99,16 +99,16 @@ function opcionElegida(){
         "Agregar una palabra de 5 letras a Wordix",
         "Salir"
     ];
-    echo "menu de opciones:"."\n";
+    echo "Menú de opciones:"."\n";
     foreach($TotalOpciones as $key => $opcionParticular){
         echo ($key + 1). ") " . $opcionParticular."\n";
 
     }
     do{
-        echo "ingrese una opcion(nro):";
+        echo "Ingrese una opción(nro): ";
         $eleccion = trim(fgets(STDIN));
         if($eleccion < 1 || $eleccion > count($TotalOpciones)){
-            echo "Opción no válida. pruebe otra opcion"."\n";
+            echo "Opción no válida. Pruebe otra opción"."\n";
         }
     }while($eleccion < 1 || $eleccion > count($TotalOpciones));
 
