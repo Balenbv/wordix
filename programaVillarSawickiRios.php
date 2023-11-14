@@ -105,7 +105,7 @@ function cargarPartidas(){
     ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   
     ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   
     ];
-    
+
     return $coleccionPartidas;
 }
 
@@ -406,20 +406,20 @@ switch ($opcion) {
 
             break;
         case 4: 
-
           $extraerPartidas = cargarPartidas();
           echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
 
-          primeraVictoria($coleccionPartidas, $nombreDelJugador);
+          primeraVictoria($extraerPartidas, $nombreDelJugador);
 
             break;
 
         case 5:
-
+            $extraerPartidas = cargarPartidas();
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
-            $estadisticasJugador = recopilarEstadisticasJugador($coleccionPartidas,$nombreDelJugador);
+
+            $estadisticasJugador = recopilarEstadisticasJugador($extraerPartidas,$nombreDelJugador);
 
 
             echo "\n**************************************\n";
@@ -441,9 +441,10 @@ switch ($opcion) {
             break;
 
         case 6:
-            uasort($coleccionPartidas, 'miComparacion');
+            $extraerPartidas = cargarPartidas();
+            uasort($extraerPartidas, 'miComparacion');
 
-            print_r($coleccionPartidas);
+            print_r($extraerPartidas);
             break;
 
         case 7: 
