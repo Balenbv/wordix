@@ -24,16 +24,32 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+function elNombeExiste($nombresCargados, $nuevoNombre){
+
+    foreach($nombresCargados as $nombre) {
+        if ($nombre["jugador"] == $nuevoNombre) {
+            echo "\nel jugador ya esta registrado\n";
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+
+
 /**
  * Obtiene una colección de palabrasDisponibles
  * 
- * Función 1
+ * Función 1:
  * La función inicializa una estructura de datos con ejemplos de palabras de cinco letras en mayúsculas y
  * retorna esta misma colección.
  * 
  * @return array
  */
-function cargarColeccionPalabras() {
+function cargarColeccionPalabras()
+{
     // array $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
@@ -41,59 +57,12 @@ function cargarColeccionPalabras() {
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "LAPIZ", "SILLA", "COCHE", "RADIO", "BOTON"
     ];
+
     return ($coleccionPalabras);
 }
 
-
 /**
- * Función 2
- * La función inicializa una estructura de datos con partidas jugadas.
- * 
- * @return array
- * 
- */
-function cargarPartidas() {
-    // array $coleccionPartidas
-    $coleccionPartidas = [
-        ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], 
-        ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    
-        ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  
-        ["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       
-        ["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     
-        ["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       
-        ["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   
-        ["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                    
-        ["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   
-        ["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                        
-    ];
-    return $coleccionPartidas;
-}
-
-/**
- * La función inicializa una estructura de datos asociativa con el resumen de un jugador.
- * 
- * @return array
- */
-function cargarResumenJugador() {
-    // array $resumenJugador
-    $resumenJugador = [
-        "jugador" => "",
-        "partidas" => 0,
-        "puntajeTotal" => 0,
-        "victorias" => 0,
-        "intento1" => 0,
-        "intento2" => 0,
-        "intento3" => 0,
-        "intento4" => 0,
-        "intento5" => 0,        
-        "intento6" => 0,        
-    ];
-    return $resumenJugador;
-}
-
-
-/**
- * Función 4
+ * Función 4:
  * La función le pide al usuario una plabra de 5 letras y, luego de verificar que lo sea, la retorna en mayusculas.
  * 
  * @return string
@@ -115,7 +84,71 @@ function cargarResumenJugador() {
     $palabraDeCincoLetras = strtoupper($palabraDeCincoLetras);
     return $palabraDeCincoLetras;
 }
+
+
+function recopilarEstadisticasJugador($partidas, $jugador){
+    $partidasQueJugo = 0;
+    $puntajeTotalJugador = 0;
+    $contIntentos1 = 0;
+    $contIntentos2 = 0;
+    $contIntentos3 = 0;
+    $contIntentos4 = 0;
+    $contIntentos5 = 0;
+    $contIntentos6 = 0;
+    $porcentajeDeVictoria = 0;
+        if (elNombeExiste($partidas, $jugador)){
+
+
+        foreach ($partidas as $estadiscticasJugador){
+            if ($estadiscticasJugador["jugador"] == $jugador ) {
+                $partidasQueJugo++;
+                $puntajeTotalJugador += $estadiscticasJugador["puntaje"];
+
+                if($estadiscticasJugador["intentos"] == 1){
+                    $contIntentos1++;
+                }
+                else if ($estadiscticasJugador["intentos"] == 2){
+                    $contIntentos2++;
+                }
+                else if ($estadiscticasJugador["intentos"] == 3){
+                    $contIntentos3++;
+                }
+                else if($estadiscticasJugador["intentos"] == 4){
+                    $contIntentos4++;
+                }
+                else if($estadiscticasJugador["intentos"] == 5){
+                    $contIntentos5++;
+                }
+                else if($estadiscticasJugador["intentos"] == 6){
+                    $contIntentos6++;
+                }
+            }
+        }
+        $cantVictorias = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
+        $porcentajeDeVictoria = ($cantVictorias / $partidasQueJugo)*100;
+
+        
+
+
+
+    }
+      
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 /**
+ * Funcion case 6:
  * Esta funcion agarra 2 arrays asociativos y los compara para determinar cual es nombre del jugador alfabeticamente menor, en caso de ser iguales compara sus palabras jugadas
  * @param array $array1
  * @param array $array2
@@ -131,8 +164,9 @@ function miComparacion($array1, $array2){
         }
 }
 
+
 /**
- * Función 7
+ * Función 7:
  * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
  * 
  * @param array $coleccionPalabrasAAgregar
@@ -148,26 +182,6 @@ function miComparacion($array1, $array2){
     return $coleccionPalabrasAAgregar;
  }
 
-/**
- * Función 10
- * La función solicita al usuario el nombre de un jugador y lo retorna en minúsculas. Verifica que comience con una letra.
- */
-function solicitarJugador() {
-    // string $jugador
-    echo "\nIngrese el nombre del jugador: ";
-    $jugador = trim(fgets(STDIN));
-    if (ctype_alpha($jugador[0])) {
-        $jugador = strtolower($jugador);
-    }
-    while (!ctype_alpha($jugador[0])) {
-        echo "\nEl nombre debe comenzar con una letra.\nIngrese el nombre del jugador: ";
-        $jugador = trim(fgets(STDIN));
-        if (ctype_alpha($jugador[0])) {
-            $jugador = strtolower($jugador);
-        }
-    }
-    return $jugador;
-}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -181,19 +195,26 @@ function solicitarJugador() {
     array $coleccionPartidas
     array $partidasJugadoresGenerales
 
-
 */
 
 //Inicialización de variables:
 $palabrasDisponibles = cargarColeccionPalabras();
-$coleccionPartidas = cargarPartidas();
-$jugador = cargarResumenJugador();
-
-$cantPalabrasDisponibles = count($palabrasDisponibles);
+$cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
+$resumenJugador =[];
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3,8],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16,15],"puchito"=> [11]];
-
+$coleccionPartidas = [["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 7, "puntaje" => 0], //1
+["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14],                    //2
+["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10],                  //3
+["palabraWordix"=> "CASAS" , "jugador" => "cau", "intentos"=> 2, "puntaje" => 11],                       //4
+["palabraWordix"=> "PIANO" , "jugador" => "mauro", "intentos"=> 2, "puntaje" => 10],                     //5
+["palabraWordix"=> "PISOS" , "jugador" => "gabi", "intentos"=> 4, "puntaje" => 8],                       //6
+["palabraWordix"=> "SILLA" , "jugador" => "valentin", "intentos"=> 7, "puntaje" => 0],                   //7  
+["palabraWordix"=> "MELON" , "jugador" => "valentin", "intentos"=> 5, "puntaje" => 9],                   //8
+["palabraWordix"=> "LAPIZ" , "jugador" => "calemchu", "intentos"=> 5, "puntaje" => 8],                   //9
+["palabraWordix"=> "TINTO" , "jugador" => "valentin", "intentos"=> 3, "puntaje" => 9],                   //10
+];
 
 //Proceso:
 
@@ -219,7 +240,7 @@ $opcion = trim(fgets(STDIN));
             $partidaRepetida = false;
             
             //Checkea que el número ingresado este dentro del rango.
-            if ($numeroElegido >= 0 && $numeroElegido < $cantPalabrasDisponibles) {
+            if ($numeroElegido >= 0 && $numeroElegido < $cantLetrasDePalabraOculta) {
 
                 //Checkea si el array del jugador está creado, si no lo está, lo crea.
                 if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
@@ -244,7 +265,7 @@ $opcion = trim(fgets(STDIN));
                     echo "El número de partida ya ha sido jugado por " . $nombreDelJugador . ", por favor elija otro.\n";
                 }
             } else {
-                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantPalabrasDisponibles . "\n\n";
+                echo "*************\n****ERROR****\n*************\nIngrese un valor entre 1 y " . $cantLetrasDePalabraOculta . "\n\n";
             }  
 
             break;
@@ -264,10 +285,10 @@ $opcion = trim(fgets(STDIN));
             $numeroDePartidas = count($partidasjugadoresGenerales[$nombreDelJugador]);   
             //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
             do {
-                if ($numeroDePartidas == $cantPalabrasDisponibles) {
+                if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
                     break;
                 }
-                $numeroAleatorio = rand(0, ($cantPalabrasDisponibles -1));
+                $numeroAleatorio = rand(0, ($cantLetrasDePalabraOculta -1));
                 $partidaRepetida = false;
                 foreach ($partidasjugadoresGenerales[$nombreDelJugador] as $numero) {
                     if ($numero == $numeroAleatorio) {
@@ -277,7 +298,7 @@ $opcion = trim(fgets(STDIN));
                 }
             } while ($partidaRepetida);
             //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
-            if ($numeroDePartidas == $cantPalabrasDisponibles) {
+            if ($numeroDePartidas == $cantLetrasDePalabraOculta) {
                 echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
                 break;
             }
@@ -336,54 +357,11 @@ $opcion = trim(fgets(STDIN));
             break;
 
         case 5:
-            $partidasQueJugo = 0;
-            $puntajeTotalJugador = 0;
-            $contIntentos1 =0;
-            $contIntentos2 =0;
-            $contIntentos3 =0;
-            $contIntentos4 =0;
-            $contIntentos5 =0;
-            $contIntentos6 =0;
-            $porcentajeDeVictoria = 0;
-            echo "ingrese el nombre del jugador a buscar: \n";
-                $nombreDelJugador = trim(fgets(STDIN));
+            echo "Ingrese su nombre\n";
+            $nombreDelJugador = trim(fgets(STDIN));
 
-                foreach ($coleccionPartidas as $estadiscticasJugador){
-                    if ($estadiscticasJugador["jugador"] == $nombreDelJugador ) {
-                        $partidasQueJugo++;
-                        $puntajeTotalJugador += $estadiscticasJugador["puntaje"];
+ 
 
-                        if($estadiscticasJugador["intentos"] == 1){
-                            $contIntentos1++;
-                        }
-                        else if ($estadiscticasJugador["intentos"] == 2){
-                            $contIntentos2++;
-                        }
-                        else if ($estadiscticasJugador["intentos"] == 3){
-                            $contIntentos3++;
-                        }
-                        else if($estadiscticasJugador["intentos"] == 4){
-                            $contIntentos4++;
-                        }
-                        else if($estadiscticasJugador["intentos"] == 5){
-                            $contIntentos5++;
-                        }
-                        else if($estadiscticasJugador["intentos"] == 6){
-                            $contIntentos6++;
-                        }
-                    }
-                }
-                $cantPartidasGanadasJugador = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
-                echo "\n".$partidasQueJugo. "     ". $cantPartidasGanadasJugador."\n";
-                $porcentajeDeVictoria = ($cantPartidasGanadasJugador / $partidasQueJugo)*100;
-
-                echo "\nJugador: ".$nombreDelJugador."\nPartidas: ".$partidasQueJugo."\nPuntaje Total: ".$puntajeTotalJugador."\nVictorias: ". $porcentajeDeVictoria."%\nAdivinadas: ";
-                echo "\nIntento 1: ".$contIntentos1.
-                    "\nIntento 2: ".$contIntentos2.
-                    "\nIntento 3: ".$contIntentos3.
-                    "\nIntento 4: ".$contIntentos4.
-                    "\nIntento 5: ".$contIntentos5.
-                    "\nIntento 6: ".$contIntentos6. "\n";
 
 
 
@@ -402,7 +380,7 @@ $opcion = trim(fgets(STDIN));
 
             //Agrega la palabra a la coleccón.
             $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
-            $cantPalabrasDisponibles = count($palabrasDisponibles);
+            $cantLetrasDePalabraOculta = count($palabrasDisponibles);
             echo "\nLa palabra fue agregada de manera exitosa.\n";
 
             break;

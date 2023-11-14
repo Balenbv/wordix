@@ -379,9 +379,9 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
         echo "Comenzar con el Intento " . $nroIntento . ":\n";
         $palabraIntento = leerPalabra5Letras();
-        $indiceIntento = $nroIntento - 1;                                                                                  //******************************************************//
-        $arregloDeIntentosWordix = analizarPalabraIntento($palabraWordix, $arregloDeIntentosWordix, $palabraIntento);     //CONSULTAR ESTRUCTURA DE DATOS $arregloDeIntentosWordix//
-        $teclado = actualizarTeclado($teclado, $arregloDeIntentosWordix[$indiceIntento]);                                //******************************************************//
+        $indiceIntento = $nroIntento - 1;                                                                               
+        $arregloDeIntentosWordix = analizarPalabraIntento($palabraWordix, $arregloDeIntentosWordix, $palabraIntento);     
+        $teclado = actualizarTeclado($teclado, $arregloDeIntentosWordix[$indiceIntento]);                                
         /*Mostrar los resultados del análisis: */
         imprimirIntentosWordix($arregloDeIntentosWordix);
         escribirTeclado($teclado);
