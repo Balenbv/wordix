@@ -293,7 +293,7 @@ function existePalabraEnColeccion($coleccionPalabrasDondeVerifica , $palabraAVer
  * 
  * @param array $coleccionPalabrasAAgregar
  * @param string $palabra
- * @return array $coleccionPalabrasAAgregar
+ * @return array 
  * 
  */
 
