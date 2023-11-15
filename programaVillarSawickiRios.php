@@ -291,7 +291,7 @@ function existePalabraEnColeccion($coleccionPalabrasDondeVerifica , $palabraAVer
             $existe = true;                                                 
         }
         $i++;
-    } while ($existe == false || count($coleccionPalabrasDondeVerifica) > $i); 
+    } while ($existe == false && count($coleccionPalabrasDondeVerifica) > $i); 
     return $existe;
 }
 
@@ -347,7 +347,7 @@ function solicitarJugador() {
  * @return int $numeroElegido
  * 
  */
-function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $cantPalabrasDisponibles) {
+function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTotales) {
     // boolean $partidaRepetida. int $numeroElegido
     $partidaRepetida = false;
 
@@ -357,7 +357,7 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $cantPalabrasDisp
             $partidasjugadoresGenerales[$nombre] = [];
         }
 
-        $numeroElegido = solicitarNumeroEntre($cantPalabrasDisponibles);
+        $numeroElegido = solicitarNumeroEntre($numeroPalabrasTotales);
         $partidaRepetida = false;
 
         // Revisa en todo el array si la palabra coincide con el número elegido.
@@ -388,7 +388,7 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $cantPalabrasDisp
  * @return boolean $agoto
  * 
  */
-function agotoPalabras($nombre,$partidasjugadoresGenerales,$cantPalabrasDisponibles) {
+function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
     // boolean $agoto, int $numeroDePartidas
     $agoto = false;
 
@@ -399,7 +399,7 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$cantPalabrasDisponib
 
     //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
     $numeroDePartidas = count($partidasjugadoresGenerales[$nombre]);
-    if ($numeroDePartidas  == $cantPalabrasDisponibles) {
+    if ($numeroDePartidas  == $totalDePalabras) {
         echo "\n***********************************************************************"."\n Usted ya jugó todas las palabras disponibles, por favor, agregue más."."\n***********************************************************************\n\n";
         $agoto = true;
     }
@@ -415,7 +415,7 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$cantPalabrasDisponib
  * @return boolean $numeroAleatorio
  * 
  */
-function randomNojugado($nombre,$partidasjugadoresGenerales,$cantPalabrasDisponibles) {
+function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras) {
     // boolean $partidaRepetida, int $numeroDePartidas $numeroAleatorio
     $partidaRepetida = false;
     //Checkea si el array del jugador está creado, si no lo está, lo crea.
@@ -425,10 +425,10 @@ function randomNojugado($nombre,$partidasjugadoresGenerales,$cantPalabrasDisponi
    $numeroDePartidas = count($partidasjugadoresGenerales[$nombre]);   
    //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
    do {
-       if ($numeroDePartidas == $cantPalabrasDisponibles) {
+       if ($numeroDePartidas == $cantidadDePalabras) {
            break;
        }
-       $numeroAleatorio = rand(0, ($cantPalabrasDisponibles -1));
+       $numeroAleatorio = rand(0, ($cantidadDePalabras -1));
        $partidaRepetida = false;
        foreach ($partidasjugadoresGenerales[$nombre] as $numero) {
            if ($numero == $numeroAleatorio) {
@@ -602,6 +602,7 @@ switch ($opcion) {  //alternativo
             $agregada = false;
             $palabraAAgregar = solicitarPalabraDeCincoLetras();
             do {
+
                 if (!existePalabraEnColeccion($palabrasDisponibles , $palabraAAgregar)) {
                     // Agrega la palabra a la coleccón.
                     $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
