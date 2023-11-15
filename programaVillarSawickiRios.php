@@ -244,7 +244,7 @@ function inicializarResumenJugador() {
     return $resumenJugador;
 }
 
-
+//estos es una prueba
 
 
 /**
