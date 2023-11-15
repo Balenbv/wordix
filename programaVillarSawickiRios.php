@@ -101,7 +101,7 @@ function opcionElegida(){
         "Agregar una palabra de 5 letras a Wordix",
         "Salir"
     ];
-    echo "Menú de opciones:"."\n";
+    echo "\nMenú de opciones:"."\n";
     foreach($TotalOpciones as $key => $opcionParticular){
         echo ($key + 1). ") " . $opcionParticular."\n";
 
@@ -489,10 +489,16 @@ switch ($opcion) {  //alternativo
 
     //12)d)
         case 1:
+            //cuenta la cantidad de palabras disponibles para jugar
+
+            $cantPalabrasDisponibles = count($palabrasDisponibles);
+
+
             //Jugar al wordix con una palabra elegida
          
             $nombreDelJugador = solicitarJugador();
 
+         
             //Checkea que el jugador no haya agotado las palabras.
             $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantPalabrasDisponibles);
             if($checkAgoto){
