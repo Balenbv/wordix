@@ -300,7 +300,7 @@ function solicitarJugador() {
  * @return int $numeroElegido
  * 
  */
-function checkNumeroJugar($nombre, &$partidasjugadoresGenerales, $cantLetrasDePalabraOculta) {
+function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $cantLetrasDePalabraOculta) {
     // boolean $partidaRepetida. int $numeroElegido
     $partidaRepetida = false;
 
@@ -353,7 +353,7 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$cantLetrasDePalabraO
     //En caso de haber jugado todas las palabras posibles, dar un mensaje de error.
     $numeroDePartidas = count($partidasjugadoresGenerales[$nombre]);
     if ($numeroDePartidas  == $cantLetrasDePalabraOculta) {
-        echo "Usted ya jugó todas las palabras disponibles, por favor, agregue más.";
+        echo "\n***********************************************************************"."\n Usted ya jugó todas las palabras disponibles, por favor, agregue más."."\n***********************************************************************\n\n";
         $agoto = true;
     }
     return $agoto;
