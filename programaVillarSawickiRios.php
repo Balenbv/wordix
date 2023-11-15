@@ -178,12 +178,34 @@ $numPartida = 1;
 
 
 
+/**
+ * La función inicializa la estructura de datos asociativa resumenJugador para ser utilizada por la función 9.
+ * 
+ * @return array
+ */
+function inicializarResumenJugador() {
+    // array $resumenJugador
+    $resumenJugador = [
+        "jugador" => "",
+        "partidas" => 0,
+        "puntajeTotal" => 0,
+        "victorias" => 0,
+        "intento1" => 0,
+        "intento2" => 0,
+        "intento3" => 0,
+        "intento4" => 0,
+        "intento5" => 0,
+        "intento6" => 0,
+    ];
+    return $resumenJugador;
+}
+
 
 
 
 /**
- * funcion case 5
- * 
+ * Función 9
+ * Case 5
  */
 
  function recopilarEstadisticasJugador($partidas, $jugador){
