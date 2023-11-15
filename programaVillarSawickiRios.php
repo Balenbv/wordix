@@ -216,7 +216,7 @@ function inicializarResumenJugador() {
 
  function recopilarEstadisticasJugador($partidas, $jugador){
     // array $resumenJugador
-    //
+    // array $estadisticasJugador
     $resumenJugador = inicializarResumenJugador();
     $resumenJugador["jugador"] = $jugador;
     
@@ -255,6 +255,7 @@ function inicializarResumenJugador() {
  * @return int
  */
 function miComparacion($array1, $array2){
+    //int $comparacionNombreJugador
     //compara de forma numerica los nombres y sus palabras jugadas
     $comparacionNombreJugador = strcmp ($array1["jugador"], $array2["jugador"]);
     $comparacionPalabraJugada = strcmp($array1["palabraWordix"], $array2["palabraWordix"]);
