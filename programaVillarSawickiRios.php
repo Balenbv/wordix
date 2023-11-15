@@ -456,6 +456,11 @@ switch ($opcion) {  //CONTESTAR
 
             $nombreDelJugador = solicitarJugador();
 
+            //Checkea si el array del jugador está creado, si no lo está, lo crea.
+            if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
+                $partidasjugadoresGenerales[$nombreDelJugador] = [];
+            } 
+
             //Checkea que el jugador no haya agotado las palabras.
             $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantLetrasDePalabraOculta);
             if($checkAgoto){
