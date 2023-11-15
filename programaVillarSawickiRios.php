@@ -268,12 +268,13 @@ function miComparacion($array1, $array2){
 
 
 /**
- * Función 7:
+ * Función 7
+ * Case 7
  * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
  * 
  * @param array $coleccionPalabrasAAgregar
  * @param string $palabra
- * @return array $coleccionPalabrasAAgregar
+ * @return array
  * 
  */
 
