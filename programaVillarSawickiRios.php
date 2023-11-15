@@ -204,45 +204,34 @@ function inicializarResumenJugador() {
  * 
  */
 
-function recopilarEstadisticasJugador($partidas, $jugador){
-    $resumenJugador = [];
-    $partidasQueJugo = 0;
-    $puntajeTotalJugador = 0;
-    $contIntentos1 = 0;
-    $contIntentos2 = 0;
-    $contIntentos3 = 0;
-    $contIntentos4 = 0;
-    $contIntentos5 = 0;
-    $contIntentos6 = 0;
+ function recopilarEstadisticasJugador($partidas, $jugador){
+    // array $resumenJugador
+    $resumenJugador = inicializarResumenJugador();
+    $resumenJugador["jugador"] = $jugador;
+    
         if (elNombeExiste($partidas, $jugador)){    //si el nombre existia, entra para seguir calculando
 
             foreach ($partidas as $estadisticasJugador){
                 if ($estadisticasJugador["jugador"] == $jugador ) {   //cuando encuentra el nombre, extrae todos los datos necesarios de su partida
-                    $partidasQueJugo++;
-                    $puntajeTotalJugador += $estadisticasJugador["puntaje"];
+                    $resumenJugador["partidas"]++;
+                    $resumenJugador["puntajeTotal"] += $estadisticasJugador["puntaje"];
 
                     switch($estadisticasJugador["intentos"]){
-                        case 1 : $contIntentos1++; break;
-                        case 2 : $contIntentos2++; break;
-                        case 3 : $contIntentos3++; break;       //filtra sus cantidades de intentos y los acumula
-                        case 4 : $contIntentos4++; break;
-                        case 5 : $contIntentos5++; break;
-                        case 6 : $contIntentos6++; break;
+                        case 1 : $resumenJugador["intento1"]++; break;
+                        case 2 : $resumenJugador["intento2"]++; break;
+                        case 3 : $resumenJugador["intento3"]++; break;       //filtra sus cantidades de intentos y los acumula
+                        case 4 : $resumenJugador["intento4"]++; break;
+                        case 5 : $resumenJugador["intento5"]++; break;
+                        case 6 : $resumenJugador["intento6"]++; break;
                         default : break;
                     }
-
                 }
             }
-            $cantVictorias = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
-
-            //luego de recopilar los datos, los almacena en sus correspondientes keys del array y se retorna
-            $resumenJugador = ["jugador" => $jugador, "partidas" => $partidasQueJugo, "puntajeTotal" => $puntajeTotalJugador, "victorias" => $cantVictorias, "intento1" => $contIntentos1, "intento2" => $contIntentos2, "intento3" => $contIntentos3, "intento4" => $contIntentos4, "intento5" => $contIntentos5, "intento6" =>$contIntentos6];
-        
+            $resumenJugador["victorias"] = $resumenJugador["intento1"] + $resumenJugador["intento2"] + $resumenJugador["intento3"]
+             + $resumenJugador["intento4"] + $resumenJugador["intento5"] + $resumenJugador["intento6"];
     }
- 
     return $resumenJugador;
-
-    }
+}
 
 
 
