@@ -130,6 +130,8 @@ function opcionElegida(){
  */
 
  function solicitarPalabraDeCincoLetras() {
+    // string $palabraDeCincoLetras
+    // int $cantLetras
     echo "\n";
     echo "Ingrese una palabra de 5 letras: ";
     $palabraDeCincoLetras = trim(fgets(STDIN));
@@ -148,6 +150,7 @@ function opcionElegida(){
 }
 /**
  * funcion case 4
+ * Esta funcion muestra (en caso de existir) la primera partida ganada de un jugador
  * @param array
  * @param string
  * 
@@ -155,6 +158,9 @@ function opcionElegida(){
  * 
  */
 function primeraVictoria($partidas,$jugador){   //esta en la funcion 6 del enunciado, se utiliza en el case 4
+    // boolean $victoria
+    // int $numPartida
+    // array $partida
 $victoria = false;
 $numPartida = 1;
 
@@ -342,13 +348,17 @@ function solicitarJugador() {
  * Función case 1
  * Pide un numero y checkea que no haya sido jugado.
  * 
- * @param array $partidasjugadoresGenerales, $cantPalabrasDisponibles
  * @param string $nombre
+ * @param array $partidasjugadoresGenerales
+ * @param $cantPalabrasDisponibles
+ * 
  * @return int $numeroElegido
  * 
  */
 function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTotales) {
-    // boolean $partidaRepetida. int $numeroElegido
+    // boolean $partidaRepetida
+    // int $numeroElegido
+    // int $numero
     $partidaRepetida = false;
 
     do {
@@ -389,7 +399,8 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
  * 
  */
 function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
-    // boolean $agoto, int $numeroDePartidas
+    // boolean $agoto 
+    // int $numeroDePartidas
     $agoto = false;
 
     // Checkea si el array del jugador está creado, si no lo está, lo crea.
@@ -416,7 +427,10 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
  * 
  */
 function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras) {
-    // boolean $partidaRepetida, int $numeroDePartidas $numeroAleatorio
+    // boolean $partidaRepetida
+    // int $numeroDePartidas
+    // int $numeroAleatorio
+    // int $numero
     $partidaRepetida = false;
     //Checkea si el array del jugador está creado, si no lo está, lo crea.
     if (!isset($partidasjugadoresGenerales[$nombre])) {
