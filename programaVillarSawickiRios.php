@@ -218,7 +218,7 @@ function inicializarResumenJugador() {
             foreach ($partidas as $estadisticasJugador){
                 if ($estadisticasJugador["jugador"] == $jugador ) {   //cuando encuentra el nombre, extrae todos los datos necesarios de su partida
                     $resumenJugador["partidas"]++;
-                    $resumenJugador["puntajeTotal"] += $estadisticasJugador["puntaje"];
+                    $resumenJugador["puntaje"] += $estadisticasJugador["puntaje"];
 
                     switch($estadisticasJugador["intentos"]){
                         case 1 : $resumenJugador["intento1"]++; break;
