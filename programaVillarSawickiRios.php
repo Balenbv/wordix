@@ -245,7 +245,7 @@ function inicializarResumenJugador() {
 }
 
 
-
+//segunda prueba
 
 /**
  * Funcion 9
