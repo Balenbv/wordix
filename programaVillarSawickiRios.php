@@ -268,7 +268,33 @@ function miComparacion($array1, $array2){
 
 
 /**
- * Función 7:
+ *  La funcion tiene como entrada una coleccion de palabras y una palabra para verificar si la palabra ya se encuentra
+ * en la colección retornando una variable booleana.
+ * 
+ * @param array $coleccionPalabrasDondeVerifica
+ * @param string $palabraAVerificar
+ * @return boolean
+ */
+function existePalabraEnColeccion($coleccionPalabrasDondeVerifica , $palabraAVerificar) {
+    // int $i
+    // boolean $existe
+    // Inicializo variable internas a la función.
+    $i = 0;
+    $existe = false;
+
+    // Busco la palabra en la colección hasta encontrarla o hasta que la colección termine.
+    do {
+        if ($coleccionPalabrasDondeVerifica[$i] == $palabraAVerificar) {    
+            $existe = true;                                                 
+        }
+        $i++;
+    } while ($existe == false || count($coleccionPalabrasDondeVerifica) > $i); 
+    return $existe;
+}
+
+
+/**
+ * Función 7
  * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
  * 
  * @param array $coleccionPalabrasAAgregar
