@@ -273,7 +273,7 @@ function miComparacion($array1, $array2){
  * 
  * @param array $coleccionPalabrasAAgregar
  * @param string $palabra
- * @return array $coleccionPalabrasAAgregar
+ * @return array 
  * 
  */
 
