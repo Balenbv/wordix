@@ -248,7 +248,8 @@ function inicializarResumenJugador() {
 
 
 /**
- * Funcion case 6:
+ * Funcion 9
+ * Case 6
  * Esta funcion agarra 2 arrays asociativos y los compara para determinar cual es nombre del jugador alfabeticamente menor, en caso de ser iguales compara sus palabras jugadas
  * @param array $array1
  * @param array $array2
