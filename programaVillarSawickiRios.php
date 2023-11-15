@@ -210,7 +210,7 @@ $numPartida = 1;
                 }
             }
             $resumenJugador["victorias"] = $resumenJugador["intento1"] + $resumenJugador["intento2"] + $resumenJugador["intento3"]
-             + $resumenJugador["intento4"] + $resumenJugador["intento5"] + $resumenJugador["intento6"];
+            + $resumenJugador["intento4"] + $resumenJugador["intento5"] + $resumenJugador["intento6"];
     }
     return $resumenJugador;
 }
