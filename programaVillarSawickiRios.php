@@ -148,9 +148,13 @@ function opcionElegida(){
 }
 /**
  * funcion case 4
+ * @param array
+ * @param string
+ * 
+ * @return 
  * 
  */
-function primeraVictoria($partidas,$jugador){
+function primeraVictoria($partidas,$jugador){   //esta en la funcion 6 del enunciado, se utiliza en el case 4
 $victoria = false;
 $numPartida = 1;
 
@@ -167,6 +171,7 @@ $numPartida = 1;
 
       if (!$victoria) {
         echo "\n".$jugador." Nunca gano una partida.\n";
+        return -1;
 }
 
 }
@@ -184,7 +189,7 @@ $numPartida = 1;
 function recopilarEstadisticasJugador($partidas, $jugador){
     $resumenJugador = [];
     $partidasQueJugo = 0;
-    $puntajeTotalJugador = 0;
+    $puntajeJugador = 0;                                    //esta funcion es la 9 del enunciado, aunque se usa en el case 5
     $contIntentos1 = 0;
     $contIntentos2 = 0;
     $contIntentos3 = 0;
@@ -196,7 +201,7 @@ function recopilarEstadisticasJugador($partidas, $jugador){
             foreach ($partidas as $estadisticasJugador){
                 if ($estadisticasJugador["jugador"] == $jugador ) {   //cuando encuentra el nombre, extrae todos los datos necesarios de su partida
                     $partidasQueJugo++;
-                    $puntajeTotalJugador += $estadisticasJugador["puntaje"];
+                    $puntajeJugador += $estadisticasJugador["puntaje"];
 
                     switch($estadisticasJugador["intentos"]){
                         case 1 : $contIntentos1++; break;
@@ -213,7 +218,7 @@ function recopilarEstadisticasJugador($partidas, $jugador){
             $cantVictorias = $contIntentos1 + $contIntentos2 + $contIntentos3 + $contIntentos4 + $contIntentos5 + $contIntentos6;
 
             //luego de recopilar los datos, los almacena en sus correspondientes keys del array y se retorna
-            $resumenJugador = ["jugador" => $jugador, "partidas" => $partidasQueJugo, "puntajeTotal" => $puntajeTotalJugador, "victorias" => $cantVictorias, "intento1" => $contIntentos1, "intento2" => $contIntentos2, "intento3" => $contIntentos3, "intento4" => $contIntentos4, "intento5" => $contIntentos5, "intento6" =>$contIntentos6];
+            $resumenJugador = ["jugador" => $jugador, "partidas" => $partidasQueJugo, "puntaje" => $puntajeJugador, "victorias" => $cantVictorias, "intento1" => $contIntentos1, "intento2" => $contIntentos2, "intento3" => $contIntentos3, "intento4" => $contIntentos4, "intento5" => $contIntentos5, "intento6" =>$contIntentos6];
         
     }
  
@@ -237,7 +242,7 @@ function miComparacion($array1, $array2){
     $comparacionPalabraJugada = strcmp($array1["palabraWordix"], $array2["palabraWordix"]);
 
         if ($comparacionNombreJugador != 0){
-            return $comparacionNombreJugador;
+            return $comparacionNombreJugador;                               //esta tambien es la funcion 11
         } else {
             return $comparacionPalabraJugada;
         }
@@ -407,18 +412,21 @@ function randomNojugado($nombre,$partidasjugadoresGenerales,$cantLetrasDePalabra
 */
 
 //Inicialización de variables:
-$palabrasDisponibles = cargarColeccionPalabras();
+$extraerPartidas = cargarPartidas();  //12)a)
+$palabrasDisponibles = cargarColeccionPalabras(); //12)b)
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 $estadisticasJugador =[];
-$extraerPartidas = cargarPartidas(); 
+
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
 
 
-do {
+do {       
 $opcion = opcionElegida();
-switch ($opcion) {
+switch ($opcion) {  //CONTESTAR
+
+    //12)d)
         case 1:
             //Jugar al wordix con una palabra elegida
          
@@ -491,8 +499,7 @@ switch ($opcion) {
             break;
         case 4: 
           //extraemos las partidas jugadas y pedimos el nombre del jugador
-          echo "Ingrese el nombre\n";
-          $nombreDelJugador = trim(fgets(STDIN));
+          $nombreDelJugador = solicitarJugador();
             
           //mostramos la primera partida ganada del jugador 
           primeraVictoria($extraerPartidas, $nombreDelJugador);
@@ -500,8 +507,7 @@ switch ($opcion) {
             break;
 
         case 5:
-            echo "Ingrese su nombre\n";
-            $nombreDelJugador = trim(fgets(STDIN));
+            $nombreDelJugador = solicitarJugador();
 
             if (elNombeExiste($extraerPartidas,$nombreDelJugador)){
             //llamamos a la funcion recopilarEstadisticasJugador y guardamos su retorno con las partidas extraidas
@@ -511,7 +517,7 @@ switch ($opcion) {
             echo "\n**************************************\n";
             echo "Jugador: ".$estadisticasJugador["jugador"];
             echo "\nPartidas: ". $estadisticasJugador["partidas"];
-            echo "\nPuntaje total: ". $estadisticasJugador["puntajeTotal"];
+            echo "\nPuntaje total: ". $estadisticasJugador["puntaje"];
             echo "\nVictorias: ". $estadisticasJugador["victorias"];
             echo "\nPorcentaje Victorias: " . floor(($estadisticasJugador["victorias"] / $estadisticasJugador["partidas"]) * 100)."%"; 
             echo "\nadivinadas".
@@ -554,4 +560,4 @@ switch ($opcion) {
             //Salir: Sale del programa.
             echo "Gracias por jugar Wordix, vuelva pronto!";    
 }
-} while ($opcion != 8);
+} while ($opcion != 8);      //12)c)
