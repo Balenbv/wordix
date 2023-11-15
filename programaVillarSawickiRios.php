@@ -478,6 +478,8 @@ $palabrasDisponibles = cargarColeccionPalabras(); //12)b)
 $cantPalabrasDisponibles = count($palabrasDisponibles);
 $partidaJugada = [];
 $estadisticasJugador =[];
+$opcion = 0;
+$nombreDelJugador = "";
 
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
