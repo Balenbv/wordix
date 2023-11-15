@@ -599,13 +599,22 @@ switch ($opcion) {  //alternativo
             //Agregar una palabra de 5 letras a Wordix utilizando las funciones 4 y 7.
             
             //Solicita la nueva palabra que se agregará.
+            $agregada = false;
             $palabraAAgregar = solicitarPalabraDeCincoLetras();
-            
-
-            //Agrega la palabra a la coleccón.
-            $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
-            $cantPalabrasDisponibles = count($palabrasDisponibles);
-            echo "\nLa palabra fue agregada de manera exitosa.\n";
+            do {
+                if (!existePalabraEnColeccion($palabrasDisponibles , $palabraAAgregar)) {
+                    // Agrega la palabra a la coleccón.
+                    $palabrasDisponibles = agregarPalabra($palabrasDisponibles , $palabraAAgregar);
+                    $cantLetrasDePalabraOculta = count($palabrasDisponibles);
+                    echo "\nLa palabra fue agregada de manera exitosa.\n";
+                    $agregada = true;
+                }
+                else if (existePalabraEnColeccion($palabrasDisponibles , $palabraAAgregar)){
+                    // Indica que la palabra ya existe y la vuelve a pedir.
+                    echo "\nLa palabra ya existe en la colección.\nInténtelo nuevamente.";
+                    $palabraAAgregar = solicitarPalabraDeCincoLetras();
+                }
+            } while (!$agregada);
             break;
 
         case 8: 
