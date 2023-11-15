@@ -155,8 +155,8 @@ $victoria = false;
 $numPartida = 1;
 
     foreach($partidas as $partida){
-
-        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0 ){ //busca la partida que coincida con el nombre ingresado
+        //busca la partida que coincida con el nombre ingresado y extrae los datos necesarios
+        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0 ){ 
             echo  "\n**************************************"."\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]. "\n**************************************\n";
             $victoria = true;
             break;
@@ -165,42 +165,19 @@ $numPartida = 1;
 
       }
 
-
       if (!$victoria) {
-
         echo "\n".$jugador." Nunca gano una partida.\n";
-        }
+}
+
 }
 
 
 
-/**
- * La función inicializa la estructura de datos asociativa resumenJugador para ser utilizada por la función 9.
- * 
- * @return array
- */
-function inicializarResumenJugador() {
-    // array $resumenJugador
-    $resumenJugador = [
-        "jugador" => "",
-        "partidas" => 0,
-        "puntajeTotal" => 0,
-        "victorias" => 0,
-        "intento1" => 0,
-        "intento2" => 0,
-        "intento3" => 0,
-        "intento4" => 0,
-        "intento5" => 0,
-        "intento6" => 0,
-    ];
-    return $resumenJugador;
-}
 
 
 
 /**
- * Función 9 
- * Case 5
+ * funcion case 5
  * 
  */
 
@@ -268,13 +245,12 @@ function miComparacion($array1, $array2){
 
 
 /**
- * Función 7
- * Case 7
+ * Función 7:
  * La función tiene como entrada una colección de palabras y una palabra para retornar la primera con la palabra agregada.
  * 
  * @param array $coleccionPalabrasAAgregar
  * @param string $palabra
- * @return array
+ * @return array $coleccionPalabrasAAgregar
  * 
  */
 
@@ -435,6 +411,7 @@ $palabrasDisponibles = cargarColeccionPalabras();
 $cantLetrasDePalabraOculta = count($palabrasDisponibles);
 $partidaJugada = [];
 $estadisticasJugador =[];
+$extraerPartidas = cargarPartidas(); 
 //Partidas pre-cargadas
 $partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
 
@@ -444,7 +421,6 @@ $opcion = opcionElegida();
 switch ($opcion) {
         case 1:
             //Jugar al wordix con una palabra elegida
-            $extraerPartidas = cargarPartidas();
          
             $nombreDelJugador = solicitarJugador();
 
@@ -468,7 +444,7 @@ switch ($opcion) {
 
         case 2: 
             //Jugar al wordix con una palabra aleatoria
-            $extraerPartidas = cargarPartidas();
+
 
             $nombreDelJugador = solicitarJugador();
 
@@ -493,42 +469,42 @@ switch ($opcion) {
             //Mostrar una partida
             //(Explicado a detalle en asana)
 
-            $cantidadDePartidas = count($coleccionPartidas);
+            $cantidadDePartidas = count($extraerPartidas);
             echo "Ingrese el número de partida que desee ver: ";
             $numReview = trim(fgets(STDIN));
             $numReview -= 1;
             if ((($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
-            $reviewPalabra = $coleccionPartidas[$numReview]["palabraWordix"];
-            $reviewJugador = $coleccionPartidas[$numReview]["jugador"];
-            $reviewIntentos = $coleccionPartidas[$numReview]["intentos"];
-            $reviewPuntaje = $coleccionPartidas[$numReview]["puntaje"];
+            $reviewPalabra = $extraerPartidas[$numReview]["palabraWordix"];
+            $reviewJugador = $extraerPartidas[$numReview]["jugador"];
+            $reviewIntentos = $extraerPartidas[$numReview]["intentos"];
+            $reviewPuntaje = $extraerPartidas[$numReview]["puntaje"];
             if($reviewPuntaje == 0){           
-                echo "\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n";
+                echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n*********************************";
             }else{
-                echo "\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n";          
+                echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n*********************************\n";          
             }
             
         }else{
-            echo "Número fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.";
+            echo "Número fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n\n";
         }
 
             break;
         case 4: 
-          $extraerPartidas = cargarPartidas();
+          //extraemos las partidas jugadas y pedimos el nombre del jugador
           echo "Ingrese el nombre\n";
           $nombreDelJugador = trim(fgets(STDIN));
-
+            
+          //mostramos la primera partida ganada del jugador 
           primeraVictoria($extraerPartidas, $nombreDelJugador);
 
             break;
 
         case 5:
-            //extraemos todas las partidas cargadas y pedimos el nombre a buscar
-            $extraerPartidas = cargarPartidas();
             echo "Ingrese su nombre\n";
             $nombreDelJugador = trim(fgets(STDIN));
 
-            //llamamos a la funcion recopilarEstadisticasJugador y guardamos su retorno
+            if (elNombeExiste($extraerPartidas,$nombreDelJugador)){
+            //llamamos a la funcion recopilarEstadisticasJugador y guardamos su retorno con las partidas extraidas
             $estadisticasJugador = recopilarEstadisticasJugador($extraerPartidas,$nombreDelJugador);
 
 
@@ -546,13 +522,14 @@ switch ($opcion) {
             "\n    intento 5: ". $estadisticasJugador["intento5"].
             "\n    intento 6: ". $estadisticasJugador["intento6"];
             echo "\n**************************************\n";
-
+            }
+            
 
             break;
 
         case 6:
             //extrae todas las partidas guardadas
-            $extraerPartidas = cargarPartidas(); 
+           
 
             //usamos la funcion uasort y la funcion miComparacion para ordenar el array de forma alfabetica
             uasort($extraerPartidas, 'miComparacion'); 
