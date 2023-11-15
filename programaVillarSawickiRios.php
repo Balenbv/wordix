@@ -518,8 +518,13 @@ switch ($opcion) {  //alternativo
             break;
 
         case 2: 
-            //Jugar al wordix con una palabra aleatoria
+            
+            //cuenta la cantidad de palabras disponibles para jugar
 
+            $cantPalabrasDisponibles = count($palabrasDisponibles);
+ 
+
+            //Jugar al wordix con una palabra aleatoria
 
             $nombreDelJugador = solicitarJugador();
 
