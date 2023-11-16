@@ -391,7 +391,7 @@ function buscarPartida($totalDePartidas){
     $extraerPartidas = $totalDePartidas;
     echo "Ingrese el número de partida que desee ver: ";
     $numReview = trim(fgets(STDIN));
-    if (is_numeric($numReview) && (($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
+    if (is_numeric($numReview) && ($numReview > 0) && ($numReview <= $cantidadDePartidas)){
     $numReview -= 1;
     $reviewPalabra = $extraerPartidas[$numReview]["palabraWordix"];
     $reviewJugador = $extraerPartidas[$numReview]["jugador"];
@@ -404,7 +404,7 @@ function buscarPartida($totalDePartidas){
     }
     
 }else{
-    echo "\n\nNúmero fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n\n";
+    echo "\nNúmero fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n";
 }
 
 
