@@ -386,6 +386,10 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
     return $numeroElegido;
 }
 
+/**
+ * Esta funcion busca el numero de partida que se le sea ingresado
+ * @param array
+ */
 function buscarPartida($totalDePartidas){
     $cantidadDePartidas = count($totalDePartidas);
     $extraerPartidas = $totalDePartidas;
@@ -407,9 +411,12 @@ function buscarPartida($totalDePartidas){
     echo "\nNúmero fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n";
 }
 
-
 }
 
+/**
+ * Esta funcion muestra en pantalla las estadiscticas del jugador
+ * @param array $estadisticasJugador
+ */
 function mostrarResultados($estadisticasJugador){
               echo "\n**************************************\n";
             echo "Jugador: ".$estadisticasJugador["jugador"];
@@ -625,9 +632,7 @@ switch ($opcion) {  //alternativo
             break;
 
         case 6:
-            //extrae todas las partidas guardadas
            
-
             //usamos la funcion uasort y la funcion miComparacion para ordenar el array de forma alfabetica
             uasort($extraerPartidas, 'miComparacion'); 
 
