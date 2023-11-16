@@ -166,10 +166,9 @@ $numPartida = 1;
 
     foreach($partidas as $partida){
         //busca la partida que coincida con el nombre ingresado y extrae los datos necesarios
-        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0 ){ 
+        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0  && $victoria == false){ 
             echo  "\n**************************************"."\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]. "\n**************************************\n";
             $victoria = true;
-            break;
         }
         $numPartida++;
 
