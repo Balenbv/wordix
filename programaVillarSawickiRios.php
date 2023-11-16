@@ -427,11 +427,12 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
  * 
  */
 function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras) {
-    // boolean $partidaRepetida
+    // boolean $partidaRepetida $cortar
     // int $numeroDePartidas
     // int $numeroAleatorio
     // int $numero
     $partidaRepetida = false;
+    $cortar = false;
     //Checkea si el array del jugador está creado, si no lo está, lo crea.
     if (!isset($partidasjugadoresGenerales[$nombre])) {
        $partidasjugadoresGenerales[$nombre] = [];
@@ -440,17 +441,17 @@ function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras)
    //Realiza un bucle de palabras aleatorias para asegurarse que no se repitan.
    do {
        if ($numeroDePartidas == $cantidadDePalabras) {
-           break;
+         $cortar = true;
        }
        $numeroAleatorio = rand(0, ($cantidadDePalabras -1));
        $partidaRepetida = false;
        foreach ($partidasjugadoresGenerales[$nombre] as $numero) {
            if ($numero == $numeroAleatorio) {
                $partidaRepetida = true;
-               break;
+               $cortar = false;
            }
        }
-   } while ($partidaRepetida);
+   } while ($partidaRepetida && $cortar != false);
 
     return $numeroAleatorio;
 }
