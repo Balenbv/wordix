@@ -194,7 +194,7 @@ function inicializarResumenJugador() {
     $resumenJugador = [
         "jugador" => "",
         "partidas" => 0,
-        "puntajeTotal" => 0,
+        "puntaje" => 0,
         "victorias" => 0,
         "intento1" => 0,
         "intento2" => 0,
