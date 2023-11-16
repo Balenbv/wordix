@@ -480,7 +480,7 @@ $partidaJugada = [];
 $estadisticasJugador =[];
 
 //Partidas pre-cargadas
-$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],"calemchu"=> [16],"valentin"=> [8,11,16]];
+$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
 
 
 do {       
