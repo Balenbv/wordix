@@ -39,16 +39,18 @@ function solicitarNumeroEntre($max)
     $min = 0;
     echo "\nIngrese un número entre 1 y " . $max . ": ";
     $numero = trim(fgets(STDIN));
-    $numero -= 1;
+ 
 
     if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
+        $numero -= 1;
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
     while (!(is_numeric($numero) && (($numero == (int)$numero) && ($numero >= $min && $numero <= ($max - 1))))) {
         echo "Debe ingresar un número entre 1 y " . $max . ": ";
         $numero = trim(fgets(STDIN));
-        $numero -= 1;
+      
         if (is_numeric($numero)) {
+            $numero -= 1;
             $numero  = $numero * 1;
         }
     }
@@ -347,7 +349,7 @@ function esIntentoGanado($estructuraPalabraIntento)
  * @param string $palabraEncontrada
  * @return int
  */
-function obtenerPuntajeWordix($cantIntentos, $palabraEncontrada)  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($cantIntentos, $palabraEncontrada)  
 {
     $puntaje = 7;
     $puntaje -= $cantIntentos ;
@@ -374,7 +376,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 {
     /*Inicialización*/
     $arregloDeIntentosWordix = [];
-    $teclado = iniciarTeclado(); //completar
+    $teclado = iniciarTeclado(); 
     escribirMensajeBienvenida($nombreUsuario);
     $nroIntento = 1;
     $numPartidaGeneral = 0;

@@ -15,9 +15,6 @@ Gabriel Sawicki - Legajo 4894 - mail: gabiswck@gmail.com - Github: GabiSawicki
 Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github: riosmerinoml
 
 
-*/
-
-/* ****COMPLETAR***** */
 
 
 /**************************************/
@@ -25,10 +22,14 @@ Mauro Leonel Ríos Merino - Legajo 5073 - mail: riosmerinoml@gmail.com - Github:
 /**************************************/
 /** 
  * funcion que evalua que un nombre exita dentro de una coleccion de nombres o si es nuevo
+ * @param array
+ * @param string
+ * 
  * @return boolean
+ * 
  */
 function elNombeExiste($nombresCargados, $nuevoNombre){
-
+    //string $nombre
     foreach($nombresCargados as $nombre) {
         if ($nombre["jugador"] == $nuevoNombre) {
             
@@ -50,8 +51,7 @@ function elNombeExiste($nombresCargados, $nuevoNombre){
  * retorna esta misma colección.
  * @return array
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras() {
     // array $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
@@ -350,11 +350,12 @@ function solicitarJugador() {
  * @param string $nombre
  * @param array $partidasjugadoresGenerales
  * @param $cantPalabrasDisponibles
+ * 
  * @return int $numeroElegido
  * 
  */
 function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTotales) {
-    // boolean $partidaRepetida $cortar
+    // boolean $partidaRepetida
     // int $numeroElegido
     // int $numero
     $partidaRepetida = false;
@@ -386,6 +387,23 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
 }
 
 
+function mostrarResultados($estadisticasJugador){
+              echo "\n**************************************\n";
+            echo "Jugador: ".$estadisticasJugador["jugador"];
+            echo "\nPartidas: ". $estadisticasJugador["partidas"];
+            echo "\nPuntaje total: ". $estadisticasJugador["puntaje"];
+            echo "\nVictorias: ". $estadisticasJugador["victorias"];
+            echo "\nPorcentaje Victorias: " . floor(($estadisticasJugador["victorias"] / $estadisticasJugador["partidas"]) * 100)."%"; 
+            echo "\nadivinadas".
+            "\n    intento 1: ". $estadisticasJugador["intento1"].
+            "\n    intento 2: ". $estadisticasJugador["intento2"].
+            "\n    intento 3: ". $estadisticasJugador["intento3"].
+            "\n    intento 4: ". $estadisticasJugador["intento4"].
+            "\n    intento 5: ". $estadisticasJugador["intento5"].
+            "\n    intento 6: ". $estadisticasJugador["intento6"];
+            echo "\n**************************************\n";
+
+}
 
 
 /**
@@ -418,11 +436,11 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
 
 /**
  * Función case 2
- * La función genera un número aleatorio que no haya sido jugado anteriormente por el jugador.
+ * La función checkea si un jugador ya jugó todas las palabras posibles.
  * 
  * @param array $partidasjugadoresGenerales, $cantPalabrasDisponibles
  * @param string $nombre
- * @return boolean $numeroAleatorio 
+ * @return boolean $numeroAleatorio
  * 
  */
 function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras) {
@@ -480,7 +498,7 @@ $partidaJugada = [];
 $estadisticasJugador =[];
 
 //Partidas pre-cargadas
-$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,14],"calemchu"=> [16],"valentin"=> [8,11,16]];
+$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [15],"valentin"=> [8,11,16]];
 
 
 do {       
@@ -557,7 +575,6 @@ switch ($opcion) {  //alternativo
 
         case 3: 
             //Mostrar una partida
-            //(Explicado a detalle en asana)
 
             $cantidadDePartidas = count($extraerPartidas);
             echo "Ingrese el número de partida que desee ver: ";
@@ -592,27 +609,12 @@ switch ($opcion) {  //alternativo
             $nombreDelJugador = solicitarJugador();
 
             if (elNombeExiste($extraerPartidas,$nombreDelJugador)){
+
             //llamamos a la funcion recopilarEstadisticasJugador y guardamos su retorno con las partidas extraidas
-            $estadisticasJugador = recopilarEstadisticasJugador($extraerPartidas,$nombreDelJugador);
+            $estadisticasRecopiladas = recopilarEstadisticasJugador($extraerPartidas,$nombreDelJugador);
 
-
-            echo "\n**************************************\n";
-            echo "Jugador: ".$estadisticasJugador["jugador"];
-            echo "\nPartidas: ". $estadisticasJugador["partidas"];
-            echo "\nPuntaje total: ". $estadisticasJugador["puntaje"];
-            echo "\nVictorias: ". $estadisticasJugador["victorias"];
-            echo "\nPorcentaje Victorias: " . floor(($estadisticasJugador["victorias"] / $estadisticasJugador["partidas"]) * 100)."%"; 
-            echo "\nadivinadas".
-            "\n    intento 1: ". $estadisticasJugador["intento1"].
-            "\n    intento 2: ". $estadisticasJugador["intento2"].
-            "\n    intento 3: ". $estadisticasJugador["intento3"].
-            "\n    intento 4: ". $estadisticasJugador["intento4"].
-            "\n    intento 5: ". $estadisticasJugador["intento5"].
-            "\n    intento 6: ". $estadisticasJugador["intento6"];
-            echo "\n**************************************\n";
+            mostrarResultados($estadisticasRecopiladas);
             }
-            
-
             break;
 
         case 6:
