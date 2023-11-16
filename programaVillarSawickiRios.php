@@ -386,6 +386,29 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
     return $numeroElegido;
 }
 
+function buscarPartida($totalDePartidas){
+    $cantidadDePartidas = count($totalDePartidas);
+    $extraerPartidas = $totalDePartidas;
+    echo "Ingrese el número de partida que desee ver: ";
+    $numReview = trim(fgets(STDIN));
+    if (is_numeric($numReview) && (($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
+    $numReview -= 1;
+    $reviewPalabra = $extraerPartidas[$numReview]["palabraWordix"];
+    $reviewJugador = $extraerPartidas[$numReview]["jugador"];
+    $reviewIntentos = $extraerPartidas[$numReview]["intentos"];
+    $reviewPuntaje = $extraerPartidas[$numReview]["puntaje"];
+    if($reviewPuntaje == 0){           
+        echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n*********************************";
+    }else{
+        echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n*********************************\n";          
+    }
+    
+}else{
+    echo "\n\nNúmero fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n\n";
+}
+
+
+}
 
 function mostrarResultados($estadisticasJugador){
               echo "\n**************************************\n";
@@ -576,25 +599,9 @@ switch ($opcion) {  //alternativo
         case 3: 
             //Mostrar una partida
 
-            $cantidadDePartidas = count($extraerPartidas);
-            echo "Ingrese el número de partida que desee ver: ";
-            $numReview = trim(fgets(STDIN));
-            $numReview -= 1;
-            if ((($numReview + 1) > 0) && ($numReview < $cantidadDePartidas)){
-            $reviewPalabra = $extraerPartidas[$numReview]["palabraWordix"];
-            $reviewJugador = $extraerPartidas[$numReview]["jugador"];
-            $reviewIntentos = $extraerPartidas[$numReview]["intentos"];
-            $reviewPuntaje = $extraerPartidas[$numReview]["puntaje"];
-            if($reviewPuntaje == 0){           
-                echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: No adivinó la palabra. \n*********************************";
-            }else{
-                echo "\n*********************************\nPartida WORDIX ".($numReview+1),": ".$reviewPalabra,"\nJugador: ".$reviewJugador,"\nPuntaje: ".$reviewPuntaje,"\nIntento: ".$reviewIntentos,"\n*********************************\n";          
-            }
+            buscarPartida($extraerPartidas);
             
-        }else{
-            echo "Número fuera de rango, hasta el momento se jugaron ".$cantidadDePartidas," partidas.\n\n";
-        }
-
+       
             break;
         case 4: 
           //extraemos las partidas jugadas y pedimos el nombre del jugador
