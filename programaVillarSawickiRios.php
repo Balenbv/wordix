@@ -350,12 +350,11 @@ function solicitarJugador() {
  * @param string $nombre
  * @param array $partidasjugadoresGenerales
  * @param $cantPalabrasDisponibles
- * 
  * @return int $numeroElegido
  * 
  */
 function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTotales) {
-    // boolean $partidaRepetida
+    // boolean $partidaRepetida $cortar
     // int $numeroElegido
     // int $numero
     $partidaRepetida = false;
@@ -419,11 +418,11 @@ function agotoPalabras($nombre,$partidasjugadoresGenerales,$totalDePalabras) {
 
 /**
  * Función case 2
- * La función checkea si un jugador ya jugó todas las palabras posibles.
+ * La función genera un número aleatorio que no haya sido jugado anteriormente por el jugador.
  * 
  * @param array $partidasjugadoresGenerales, $cantPalabrasDisponibles
  * @param string $nombre
- * @return boolean $numeroAleatorio
+ * @return boolean $numeroAleatorio 
  * 
  */
 function randomNojugado($nombre,$partidasjugadoresGenerales,$cantidadDePalabras) {
