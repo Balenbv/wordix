@@ -359,6 +359,7 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
     // int $numeroElegido
     // int $numero
     $partidaRepetida = false;
+    $cortar = false;
 
     do {
         // Checkea si el array del jugador está creado, si no lo está, lo crea.
@@ -374,10 +375,10 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
             if ($numero == $numeroElegido) {
                 $partidaRepetida = true;
                 echo "El número de partida ya ha sido jugado por " . $nombre . ", por favor elija otro.\n";
-                break; // Se encontró una coincidencia, se sale del bucle
+                $cortar = true; // Se encontró una coincidencia, se sale del bucle
             }
         }
-    } while ($partidaRepetida);
+    } while ($partidaRepetida && $cortar);
 
     // Agrega el número jugado al array de partidas del jugador
     $partidasjugadoresGenerales[$nombre][] = $numeroElegido;
