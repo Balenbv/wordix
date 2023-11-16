@@ -35,7 +35,7 @@ function elNombeExiste($nombresCargados, $nuevoNombre){
             return true;
         }
     }
-    echo "\nel jugador no esta registrado\n";
+    echo "\nEl jugador no está registrado\n";
     return false;
 }
 
@@ -480,7 +480,7 @@ $partidaJugada = [];
 $estadisticasJugador =[];
 
 //Partidas pre-cargadas
-$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [14],"calemchu"=> [16],"valentin"=> [8,11,16]];
+$partidasjugadoresGenerales = ["majo"=> [1],"rudolf"=> [3],"pink2000" => [1],"cau"=> [3],"mauro"=> [13],"gabi"=> [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],"calemchu"=> [16],"valentin"=> [8,11,16]];
 
 
 do {       
@@ -497,6 +497,11 @@ switch ($opcion) {  //alternativo
             //Jugar al wordix con una palabra elegida
          
             $nombreDelJugador = solicitarJugador();
+
+            // Checkea si el array del jugador está creado, si no lo está, lo crea.
+            if (!isset($partidasjugadoresGenerales[$nombreDelJugador])) {
+                $partidasjugadoresGenerales[$nombreDelJugador] = [];
+            }
 
          
             //Checkea que el jugador no haya agotado las palabras.
