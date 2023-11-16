@@ -388,9 +388,17 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
 
 /**
  * Esta funcion busca el numero de partida que se le sea ingresado
- * @param array
+ * @param array $totalDePartidas
  */
 function buscarPartida($totalDePartidas){
+    // string $reviewPalabra
+    // string $reviewJugador
+    // array $extraerPartidas
+    // int $cantidadDePartidas
+    // int $numReview
+    // int $reviewIntentos
+    // int $reviewpuntaje
+
     $cantidadDePartidas = count($totalDePartidas);
     $extraerPartidas = $totalDePartidas;
     echo "Ingrese el número de partida que desee ver: ";
