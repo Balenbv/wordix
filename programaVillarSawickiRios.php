@@ -149,37 +149,37 @@ function opcionElegida(){
     
 }
 /**
- * funcion case 4
- * Esta funcion muestra (en caso de existir) la primera partida ganada de un jugador
- * @param array
- * @param string
- * 
- * @return 
- * 
+ * función case 4
+ * Esta función muestra (en caso de existir) la primera partida ganada de un jugador
+ * @param array $partidas
+ * @param string $jugador
+ * @return int
  */
-function primeraVictoria($partidas,$jugador){   //esta en la funcion 6 del enunciado, se utiliza en el case 4
-    // boolean $victoria
-    // int $numPartida
-    // array $partida
-$victoria = false;
-$numPartida = 1;
+function primeraVictoria($partidas, $jugador) {
+    $victoria = false;
+    $numPartida = 1;
+    $totalPartidas = count($partidas);
+    $indicePrimerPartidaGanada = 0;
+    if (elNombeExiste($partidas, $jugador)){
 
-    foreach($partidas as $partida){
-        //busca la partida que coincida con el nombre ingresado y extrae los datos necesarios
-        if ($partida["jugador"] == $jugador && $partida["puntaje"] != 0  && $victoria == false){ 
-            echo  "\n**************************************"."\nPartida WORDIX ".$numPartida.": palabra ".$partida["palabraWordix"] ."\nJugador: ". $partida["jugador"] ."\nCantidad de intentos: ". $partida["intentos"] ."\nPuntaje: ". $partida["puntaje"]. "\n**************************************\n";
-            $victoria = true;
+        do {
+            $partida = $partidas[$numPartida -1];
+            if (!$victoria && $partida["jugador"] == $jugador && $partida["puntaje"] != 0) {
+            $indicePrimerPartidaGanada = $numPartida ;
+                $victoria = true;
+            }
+            $numPartida++;
+        } while (!$victoria && $numPartida <= $totalPartidas);
+
+        if (!$victoria) {
+            return -1;
         }
-        $numPartida++;
+    }
 
-      }
-
-      if (!$victoria) {
-        echo "\n".$jugador." Nunca gano una partida.\n";
-        return -1;
+    return $indicePrimerPartidaGanada;
 }
 
-}
+
 
 
 
@@ -372,7 +372,7 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
 
         // Revisa en todo el array si la palabra coincide con el número elegido.
         foreach ($partidasjugadoresGenerales[$nombre] as $numero) {
-            if ($numero == $numeroElegido) {
+            if ($numero -1 == $numeroElegido) {
                 $partidaRepetida = true;
                 echo "El número de partida ya ha sido jugado por " . $nombre . ", por favor elija otro.\n";
                 $cortar = true; // Se encontró una coincidencia, se sale del bucle
@@ -390,7 +390,7 @@ function checkNumeroJugar($nombre,$partidasjugadoresGenerales, $numeroPalabrasTo
  * Esta funcion busca el numero de partida que se le sea ingresado
  * @param array $totalDePartidas
  */
-function buscarPartida($totalDePartidas){
+function buscarPartida($totalDePartidas, $numReview){
     // string $reviewPalabra
     // string $reviewJugador
     // array $extraerPartidas
@@ -401,8 +401,7 @@ function buscarPartida($totalDePartidas){
 
     $cantidadDePartidas = count($totalDePartidas);
     $extraerPartidas = $totalDePartidas;
-    echo "Ingrese el número de partida que desee ver: ";
-    $numReview = trim(fgets(STDIN));
+
     if (is_numeric($numReview) && ($numReview > 0) && ($numReview <= $cantidadDePartidas)){
     $numReview -= 1;
     $reviewPalabra = $extraerPartidas[$numReview]["palabraWordix"];
@@ -562,19 +561,20 @@ switch ($opcion) {  //alternativo
          
             //Checkea que el jugador no haya agotado las palabras.
             $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantPalabrasDisponibles);
-            if($checkAgoto){
-                break;
-            }
 
+            if(!$checkAgoto){
             //Checkea que el número se ingrese de manera correcta y no haya sido jugado por el jugador.
             $checkNumero = checkNumeroJugar($nombreDelJugador,$partidasjugadoresGenerales,$cantPalabrasDisponibles);
 
-             //Se juega la partida y se almacenan datos en los arrays. 
-             $palabraSecreta = $palabrasDisponibles[$checkNumero];
-             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
-             array_push($extraerPartidas, $partidaJugada);
-             array_push($partidasjugadoresGenerales[$nombreDelJugador], $checkNumero);
-            
+            //Se juega la partida y se almacenan datos en los arrays. 
+            $palabraSecreta = $palabrasDisponibles[$checkNumero];
+            $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
+            array_push($extraerPartidas, $partidaJugada);
+            array_push($partidasjugadoresGenerales[$nombreDelJugador], $checkNumero);
+           
+            }
+
+         
 
             break;
 
@@ -596,11 +596,9 @@ switch ($opcion) {  //alternativo
 
             //Checkea que el jugador no haya agotado las palabras.
             $checkAgoto = agotoPalabras($nombreDelJugador,$partidasjugadoresGenerales,$cantPalabrasDisponibles);
-            if($checkAgoto){
-                break;
-            }
 
-            //Consigue una palabra no jugada anteriormente.
+            if(!$checkAgoto){
+                            //Consigue una palabra no jugada anteriormente.
             $numeroAleatorio = randomNojugado($nombreDelJugador,$partidasjugadoresGenerales,$cantPalabrasDisponibles);        
             
             //Se juega la partida y se almacenan datos en los arrays. 
@@ -608,13 +606,17 @@ switch ($opcion) {  //alternativo
             $partidaJugada = jugarWordix($palabraSecreta, strtolower($nombreDelJugador));
             array_push($extraerPartidas, $partidaJugada);
             array_push($partidasjugadoresGenerales[$nombreDelJugador], $numeroAleatorio);
+            }
+
+
             break;
 
 
         case 3: 
             //Mostrar una partida
-
-            buscarPartida($extraerPartidas);
+            echo "Ingrese el número de partida que desee ver: ";
+            $numReview = trim(fgets(STDIN));
+            buscarPartida($extraerPartidas, $numReview);
             
        
             break;
@@ -623,7 +625,12 @@ switch ($opcion) {  //alternativo
           $nombreDelJugador = solicitarJugador();
             
           //mostramos la primera partida ganada del jugador 
-          primeraVictoria($extraerPartidas, $nombreDelJugador);
+          if (elNombeExiste($extraerPartidas, $nombreDelJugador)){
+          $indice = primeraVictoria($extraerPartidas, $nombreDelJugador);
+           if ($indice != -1) {
+            buscarPartida($extraerPartidas, $indice);
+           } else {echo "\n".$nombreDelJugador . " nunca gano una partida";}
+          }
 
             break;
 
